@@ -1,3 +1,6 @@
+
+raw
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
         (set the Stripe success/redirect URL to your Calendly intake page)
      2. Replace Alina Abraham and the bracketed bio text in the "Who I am" section
      ========================================================= */
-
+ 
   :root{
     --bg:#f4eede;          /* warm oat */
     --bg-2:#efe7d4;        /* deeper oat band */
@@ -31,7 +34,7 @@
     --shadow:28px 28px 60px rgba(64,52,33,.10);
     --radius:26px;
   }
-
+ 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
@@ -49,9 +52,9 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
   .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 28px}
-
+ 
   h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
-
+ 
   /* ---------- buttons ---------- */
   .btn{
     display:inline-flex;align-items:center;gap:.6rem;
@@ -73,7 +76,7 @@
     background:var(--sage-tint);border:1px solid #cdd9c0;
     padding:.45rem 1rem;border-radius:100px;letter-spacing:.01em;
   }
-
+ 
   /* ---------- hero ---------- */
   header{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5.5rem)}
   .blob{position:absolute;z-index:0;filter:blur(8px);opacity:.55;pointer-events:none}
@@ -96,7 +99,7 @@
   }
   .lede strong{color:var(--ink);font-weight:600}
   .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
-
+ 
   /* fade-up animation */
   .fade{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
   .fade.in{opacity:1;transform:none}
@@ -104,7 +107,7 @@
   header .fade:nth-child(2){transition-delay:.15s}
   header .fade:nth-child(3){transition-delay:.28s}
   header .fade:nth-child(4){transition-delay:.4s}
-
+ 
   /* ---------- section scaffolding ---------- */
   section{position:relative;padding:clamp(3.2rem,7vw,6rem) 0}
   .band{background:var(--bg-2)}
@@ -113,7 +116,7 @@
     color:var(--sage);margin-bottom:1.1rem;
   }
   section h2{font-size:clamp(2rem,4.6vw,3.1rem);max-width:18ch;margin-bottom:1.4rem}
-
+ 
   /* ---------- problem ---------- */
   .problem-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:start}
   .problem-grid p{font-size:1.16rem;color:var(--ink-soft);margin-bottom:1.2rem;line-height:1.62}
@@ -124,7 +127,7 @@
     border-left:3px solid var(--clay);padding:.4rem 0 .4rem 1.6rem;
   }
   .pull span{color:var(--clay);font-style:normal;font-weight:600}
-
+ 
   /* ---------- what you get ---------- */
   .gets{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:.6rem}
   .get{
@@ -143,7 +146,7 @@
   .get p{font-size:.98rem;color:var(--ink-soft);line-height:1.5}
   .get.full h3,.get.full p{color:#fdfaf2}
   .get.full p{color:#e7eede}
-
+ 
   /* ---------- who I am ---------- */
   .about{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.6rem,4vw,3rem);align-items:center}
   .avatar{
@@ -161,7 +164,7 @@
     background:var(--clay-tint);border:1px dashed #d9ad94;border-radius:12px;
     padding:.7rem .9rem;line-height:1.45;
   }
-
+ 
   /* ---------- faq ---------- */
   .faq-list{margin-top:.5rem;border-top:1px solid var(--line)}
   details{border-bottom:1px solid var(--line)}
@@ -180,7 +183,7 @@
   details[open] .plus{transform:rotate(90deg)}
   details[open] .plus::after{transform:scaleY(0)}
   details .ans{padding:0 .2rem 1.5rem;color:var(--ink-soft);font-size:1.05rem;max-width:62ch}
-
+ 
   /* ---------- final cta ---------- */
   .final{background:var(--sage);color:#fdfaf2;text-align:center;border-radius:34px;
     padding:clamp(2.8rem,6vw,4.5rem) clamp(1.5rem,5vw,4rem);margin:0 28px;position:relative;overflow:hidden}
@@ -192,7 +195,7 @@
   .final .reassure{margin-top:1.3rem;font-size:.92rem;color:#cdd9c0}
   .final .glow{position:absolute;width:600px;height:600px;border-radius:50%;
     background:radial-gradient(circle, rgba(255,255,255,.14), transparent 60%);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
-
+ 
   /* ---------- footer ---------- */
   footer{padding:3.4rem 0 4rem;text-align:center}
   .crisis{
@@ -203,7 +206,7 @@
   .crisis a{color:var(--sage-deep);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--sage-tint)}
   .disclaimer{font-size:.86rem;color:var(--ink-soft);max-width:620px;margin:0 auto;line-height:1.55;opacity:.85}
   .madeby{margin-top:1.6rem;font-size:.82rem;color:var(--ink-soft);opacity:.7}
-
+ 
   /* ---------- responsive ---------- */
   @media(max-width:760px){
     body{font-size:17px}
@@ -220,7 +223,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- ============ HERO ============ -->
 <header>
   <svg class="blob one" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M44.5,-67.6C57,-59.4,65.7,-45.6,71.2,-30.7C76.7,-15.8,79,0.2,75.3,15C71.6,29.8,61.9,43.4,49,53.6C36.1,63.8,20,70.6,2.7,67C-14.6,63.4,-29.2,49.4,-42.6,35.4C-56,21.4,-68.2,7.4,-69.9,-8.2C-71.6,-23.8,-62.8,-41,-49.4,-49.7C-36,-58.4,-18,-58.6,-0.7,-57.6C16.6,-56.6,33.2,-54.4,44.5,-67.6Z" transform="translate(100 100)"/></svg>
@@ -235,7 +238,7 @@
     </div>
   </div>
 </header>
-
+ 
 <!-- ============ THE PROBLEM ============ -->
 <section class="band">
   <div class="wrap">
@@ -251,7 +254,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ============ WHAT YOU GET ============ -->
 <section>
   <div class="wrap">
@@ -291,7 +294,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ============ WHO I AM ============ -->
 <section class="band">
   <div class="wrap">
@@ -299,13 +302,12 @@
     <div class="about fade">
       <div class="avatar" aria-hidden="true">★</div>
       <div>
-        <p>I'm <strong>Alina Abraham</strong>. I'm not a therapist — <strong>I'm someone who spent two years volunteering on a crisis line.</strong> I watched the same pattern over and over: people calling years after one bad therapy experience, never having tried again. That's solvable. Most people just need help filtering.</p>
-        <span class="editnote">✎ Edit me: swap in your real name and your own background (e.g. "a UGA student who…"). Keep it honest and specific — this section builds the trust that earns the $75.</span>
+        <p>I'm <strong>Alina Abraham</strong>, a student at the University of Georgia. I'm not a therapist — <strong>I'm a Crisis Text Line volunteer</strong> who's spent over a year supporting people through their hardest moments. The same pattern keeps showing up: they tried therapy once, it didn't click, and they never went back. That's a fixable problem. I do the hours of filtering through directories so what lands in your inbox is three real options, not forty strangers.</p>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- ============ FAQ ============ -->
 <section>
   <div class="wrap">
@@ -335,7 +337,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ============ FINAL CTA ============ -->
 <section>
   <div class="final fade">
@@ -348,7 +350,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -362,7 +364,7 @@
     <p class="madeby">© <span id="yr"></span> Alina Abraham · Therapist Match</p>
   </div>
 </footer>
-
+ 
 <script>
   // reveal-on-scroll
   document.getElementById('yr').textContent = new Date().getFullYear();
