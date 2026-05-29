@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find a therapist you'll actually click with</title>
+<meta name="description" content="I'll personally find you 3 therapists you'll actually click with. $75. Money back if I can't." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     EDIT THESE TWO LINKS  ↓↓↓
+     1. Replace https://calendly.com/alinaabraham05/30min with your $75 Stripe payment link
+        (set the Stripe success/redirect URL to your Calendly intake page)
+     2. Replace Alina Abraham and the bracketed bio text in the "Who I am" section
+     ========================================================= */
+
+  :root{
+    --bg:#f4eede;          /* warm oat */
+    --bg-2:#efe7d4;        /* deeper oat band */
+    --surface:#fbf7ee;     /* card cream */
+    --ink:#28241d;         /* warm near-black */
+    --ink-soft:#5f574a;    /* muted brown-grey */
+    --sage:#46613f;        /* grounded healing green */
+    --sage-deep:#374f31;
+    --sage-tint:#dfe6d4;
+    --clay:#c2683f;        /* warm clay accent */
+    --clay-tint:#f0d9cb;
+    --line:#e2d8c2;
+    --shadow:28px 28px 60px rgba(64,52,33,.10);
+    --radius:26px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',sans-serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* subtle paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 28px}
+
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:var(--sage);color:#fdfaf2;
+    font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:1.06rem;
+    padding:1.05rem 2.1rem;border-radius:100px;text-decoration:none;
+    border:1px solid var(--sage-deep);
+    box-shadow:0 14px 28px -12px rgba(55,79,49,.55);
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s;
+    will-change:transform;
+  }
+  .btn:hover{transform:translateY(-3px);background:var(--sage-deep);box-shadow:0 22px 40px -14px rgba(55,79,49,.6)}
+  .btn:active{transform:translateY(-1px)}
+  .btn .arrow{transition:transform .25s}
+  .btn:hover .arrow{transform:translate(4px,-1px)}
+  .price-pill{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.92rem;font-weight:600;color:var(--sage-deep);
+    background:var(--sage-tint);border:1px solid #cdd9c0;
+    padding:.45rem 1rem;border-radius:100px;letter-spacing:.01em;
+  }
+
+  /* ---------- hero ---------- */
+  header{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5.5rem)}
+  .blob{position:absolute;z-index:0;filter:blur(8px);opacity:.55;pointer-events:none}
+  .blob.one{width:520px;top:-120px;right:-160px;color:var(--sage-tint)}
+  .blob.two{width:360px;bottom:-160px;left:-150px;color:var(--clay-tint)}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--clay);margin-bottom:1.6rem;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--clay)}
+  header h1{
+    font-size:clamp(2.6rem,6.4vw,4.6rem);
+    max-width:14ch;margin-bottom:1.5rem;
+  }
+  header h1 em{font-style:italic;color:var(--sage);font-weight:500}
+  .lede{
+    font-size:clamp(1.15rem,2.3vw,1.45rem);
+    color:var(--ink-soft);max-width:34ch;margin-bottom:2.4rem;line-height:1.5;
+  }
+  .lede strong{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
+
+  /* fade-up animation */
+  .fade{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+  .fade.in{opacity:1;transform:none}
+  header .fade:nth-child(1){transition-delay:.05s}
+  header .fade:nth-child(2){transition-delay:.15s}
+  header .fade:nth-child(3){transition-delay:.28s}
+  header .fade:nth-child(4){transition-delay:.4s}
+
+  /* ---------- section scaffolding ---------- */
+  section{position:relative;padding:clamp(3.2rem,7vw,6rem) 0}
+  .band{background:var(--bg-2)}
+  .label{
+    font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--sage);margin-bottom:1.1rem;
+  }
+  section h2{font-size:clamp(2rem,4.6vw,3.1rem);max-width:18ch;margin-bottom:1.4rem}
+
+  /* ---------- problem ---------- */
+  .problem-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+  .problem-grid p{font-size:1.16rem;color:var(--ink-soft);margin-bottom:1.2rem;line-height:1.62}
+  .problem-grid p:last-child{margin-bottom:0}
+  .pull{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);
+    line-height:1.3;color:var(--ink);
+    border-left:3px solid var(--clay);padding:.4rem 0 .4rem 1.6rem;
+  }
+  .pull span{color:var(--clay);font-style:normal;font-weight:600}
+
+  /* ---------- what you get ---------- */
+  .gets{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:.6rem}
+  .get{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.7rem 1.7rem 1.6rem;display:flex;gap:1.1rem;align-items:flex-start;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+  }
+  .get:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .get.full{grid-column:1 / -1;background:var(--sage);border-color:var(--sage-deep)}
+  .get .ic{
+    flex:0 0 auto;width:42px;height:42px;border-radius:13px;
+    background:var(--sage-tint);display:grid;place-items:center;color:var(--sage-deep);
+  }
+  .get.full .ic{background:rgba(255,255,255,.16);color:#fdfaf2}
+  .get h3{font-size:1.18rem;font-weight:600;margin-bottom:.3rem;letter-spacing:-.005em}
+  .get p{font-size:.98rem;color:var(--ink-soft);line-height:1.5}
+  .get.full h3,.get.full p{color:#fdfaf2}
+  .get.full p{color:#e7eede}
+
+  /* ---------- who I am ---------- */
+  .about{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.6rem,4vw,3rem);align-items:center}
+  .avatar{
+    width:128px;height:128px;border-radius:50%;flex:0 0 auto;
+    background:radial-gradient(circle at 32% 30%, #d8e0cb, var(--sage));
+    display:grid;place-items:center;color:#fdfaf2;
+    font-family:'Fraunces',serif;font-size:2.6rem;
+    box-shadow:0 18px 40px -18px rgba(55,79,49,.6);
+    border:5px solid var(--surface);
+  }
+  .about p{font-size:1.18rem;color:var(--ink-soft);line-height:1.6}
+  .about p strong{color:var(--ink);font-weight:600}
+  .editnote{
+    display:block;margin-top:1rem;font-size:.82rem;color:var(--clay);
+    background:var(--clay-tint);border:1px dashed #d9ad94;border-radius:12px;
+    padding:.7rem .9rem;line-height:1.45;
+  }
+
+  /* ---------- faq ---------- */
+  .faq-list{margin-top:.5rem;border-top:1px solid var(--line)}
+  details{border-bottom:1px solid var(--line)}
+  summary{
+    list-style:none;cursor:pointer;padding:1.35rem .2rem;
+    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
+    font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;color:var(--ink);
+    transition:color .2s;
+  }
+  summary:hover{color:var(--sage)}
+  summary::-webkit-details-marker{display:none}
+  .plus{flex:0 0 auto;width:26px;height:26px;position:relative;transition:transform .3s}
+  .plus::before,.plus::after{content:"";position:absolute;background:var(--sage);border-radius:2px}
+  .plus::before{top:12px;left:3px;width:20px;height:2.5px}
+  .plus::after{top:3px;left:12px;width:2.5px;height:20px;transition:transform .3s}
+  details[open] .plus{transform:rotate(90deg)}
+  details[open] .plus::after{transform:scaleY(0)}
+  details .ans{padding:0 .2rem 1.5rem;color:var(--ink-soft);font-size:1.05rem;max-width:62ch}
+
+  /* ---------- final cta ---------- */
+  .final{background:var(--sage);color:#fdfaf2;text-align:center;border-radius:34px;
+    padding:clamp(2.8rem,6vw,4.5rem) clamp(1.5rem,5vw,4rem);margin:0 28px;position:relative;overflow:hidden}
+  .final .wrap{padding:0}
+  .final h2{color:#fdfaf2;margin:0 auto 1.1rem;max-width:20ch;font-size:clamp(2rem,4.4vw,2.9rem)}
+  .final p{color:#e7eede;font-size:1.15rem;max-width:42ch;margin:0 auto 2.1rem}
+  .final .btn{background:#fdfaf2;color:var(--sage-deep);border-color:#fdfaf2;box-shadow:0 16px 34px -14px rgba(0,0,0,.4)}
+  .final .btn:hover{background:#fff;transform:translateY(-3px)}
+  .final .reassure{margin-top:1.3rem;font-size:.92rem;color:#cdd9c0}
+  .final .glow{position:absolute;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.14), transparent 60%);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
+
+  /* ---------- footer ---------- */
+  footer{padding:3.4rem 0 4rem;text-align:center}
+  .crisis{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:1.2rem 1.4rem;max-width:640px;margin:0 auto 1.8rem;font-size:.98rem;color:var(--ink-soft);line-height:1.55;
+  }
+  .crisis strong{color:var(--ink)}
+  .crisis a{color:var(--sage-deep);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--sage-tint)}
+  .disclaimer{font-size:.86rem;color:var(--ink-soft);max-width:620px;margin:0 auto;line-height:1.55;opacity:.85}
+  .madeby{margin-top:1.6rem;font-size:.82rem;color:var(--ink-soft);opacity:.7}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:760px){
+    body{font-size:17px}
+    .problem-grid{grid-template-columns:1fr;gap:1.8rem}
+    .gets{grid-template-columns:1fr}
+    .about{grid-template-columns:1fr;text-align:center;justify-items:center}
+    .editnote{text-align:left}
+    .pull{font-size:1.4rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .fade{opacity:1;transform:none;transition:none}
+    *{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header>
+  <svg class="blob one" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M44.5,-67.6C57,-59.4,65.7,-45.6,71.2,-30.7C76.7,-15.8,79,0.2,75.3,15C71.6,29.8,61.9,43.4,49,53.6C36.1,63.8,20,70.6,2.7,67C-14.6,63.4,-29.2,49.4,-42.6,35.4C-56,21.4,-68.2,7.4,-69.9,-8.2C-71.6,-23.8,-62.8,-41,-49.4,-49.7C-36,-58.4,-18,-58.6,-0.7,-57.6C16.6,-56.6,33.2,-54.4,44.5,-67.6Z" transform="translate(100 100)"/></svg>
+  <svg class="blob two" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M39.3,-62.9C50.6,-55.6,59.3,-44.6,65.8,-32.1C72.3,-19.6,76.6,-5.6,74.6,7.6C72.6,20.8,64.3,33.2,53.9,43.9C43.5,54.6,31,63.6,16.7,68.4C2.4,73.2,-13.7,73.8,-27.8,68.5C-41.9,63.2,-54,52,-62.3,38.4C-70.6,24.8,-75.1,8.8,-72.7,-6C-70.3,-20.8,-61,-34.4,-49.3,-42.1C-37.6,-49.8,-23.5,-51.6,-9.6,-55.9C4.3,-60.2,18.6,-67,39.3,-62.9Z" transform="translate(100 100)"/></svg>
+  <div class="wrap">
+    <div class="eyebrow fade"><span class="dot"></span> Therapist matching, done by a human</div>
+    <h1 class="fade">Stop quitting therapy after one <em>bad therapist.</em></h1>
+    <p class="lede fade">I'll personally find you 3 therapists you'll actually click with. <strong>$75. Money back if I can't.</strong></p>
+    <div class="hero-cta fade">
+      <a class="btn" href="https://calendly.com/alinaabraham05/30min">Find my match <span class="arrow">→</span></a>
+      <span class="price-pill">✓ Full refund if I can't find 3 good fits</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="band">
+  <div class="wrap">
+    <p class="label fade">Why this is so hard</p>
+    <div class="problem-grid">
+      <div class="fade">
+        <p>You picked one from Psychology Today. It didn't click. Now the thought of starting over feels impossible — so you're stuck. Knowing you need help. Not getting it.</p>
+        <p>I've talked to 100+ people stuck in this exact loop. The directory is broken. It asks you to trust a stranger with your worst thoughts based on a headshot and a paragraph of jargon. Of course it doesn't work.</p>
+      </div>
+      <div class="fade">
+        <p class="pull">It isn't you. <span>The search is the broken part</span> — not you, and not therapy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT YOU GET ============ -->
+<section>
+  <div class="wrap">
+    <p class="label fade">What you get</p>
+    <h2 class="fade">A real person doing the 10 hours of searching for you.</h2>
+    <div class="gets">
+      <div class="get fade">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5M8 3v4M16 3v4"/><circle cx="12" cy="14" r="3"/></svg>
+        </span>
+        <div><h3>A 30-minute intake call</h3><p>We figure out what you actually need — history, dealbreakers, what didn't work last time.</p></div>
+      </div>
+      <div class="get fade">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a7.5 7.5 0 0 1 13 0"/></svg>
+        </span>
+        <div><h3>3 hand-picked recommendations</h3><p>Delivered within 5 business days — chosen for you, not pulled from a list of 40 strangers.</p></div>
+      </div>
+      <div class="get fade">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+        </span>
+        <div><h3>A 1-page "why this person" brief</h3><p>For every match — so you know exactly why they could be a fit before you reach out.</p></div>
+      </div>
+      <div class="get fade">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+        </span>
+        <div><h3>Your format, your way</h3><p>Insurance, sliding-scale, telehealth, or in-person — I match to how you actually want to be seen.</p></div>
+      </div>
+      <div class="get full fade">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <div><h3>Money back if I can't find 3 good fits</h3><p>If I can't deliver three matches worth your time, you get a full refund. No questions, no hard feelings.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO I AM ============ -->
+<section class="band">
+  <div class="wrap">
+    <p class="label fade">Who you'll be working with</p>
+    <div class="about fade">
+      <div class="avatar" aria-hidden="true">★</div>
+      <div>
+        <p>I'm <strong>Alina Abraham</strong>. I'm not a therapist — <strong>I'm someone who spent two years volunteering on a crisis line.</strong> I watched the same pattern over and over: people calling years after one bad therapy experience, never having tried again. That's solvable. Most people just need help filtering.</p>
+        <span class="editnote">✎ Edit me: swap in your real name and your own background (e.g. "a UGA student who…"). Keep it honest and specific — this section builds the trust that earns the $75.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="wrap">
+    <p class="label fade">Questions people ask</p>
+    <h2 class="fade">The honest answers.</h2>
+    <div class="faq-list fade">
+      <details open>
+        <summary>Is this therapy? <span class="plus"></span></summary>
+        <div class="ans">No. I'm not a clinician. I'm a curator who helps you filter providers and find a good fit faster.</div>
+      </details>
+      <details>
+        <summary>Do you take insurance? <span class="plus"></span></summary>
+        <div class="ans">I don't — but I'll prioritize therapists who take yours, so your matches actually fit your coverage.</div>
+      </details>
+      <details>
+        <summary>What if I don't like any of the 3? <span class="plus"></span></summary>
+        <div class="ans">Full money back, no questions. The whole point is that you walk away with options worth your time, or you walk away with your money.</div>
+      </details>
+      <details>
+        <summary>How fast is it? <span class="plus"></span></summary>
+        <div class="ans">Five business days from your intake call to your three matches.</div>
+      </details>
+      <details>
+        <summary>Where do you find them? <span class="plus"></span></summary>
+        <div class="ans">Public directories, my vetted network, and community recommendations — the same places you could look, except I do the 10 hours of work so you don't have to.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section>
+  <div class="final fade">
+    <div class="glow"></div>
+    <div class="wrap">
+      <h2>You don't have to keep starting over.</h2>
+      <p>One intake call. Three real options. A person in your corner doing the part that's been stopping you.</p>
+      <a class="btn" href="https://calendly.com/alinaabraham05/30min">Find my match — $75 <span class="arrow">→</span></a>
+      <p class="reassure">Money back if I can't find 3 good fits.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="crisis">
+      <strong>If you're in crisis or thinking about harming yourself, please reach out now.</strong><br>
+      Call or text <a href="tel:988">988</a> (the Suicide &amp; Crisis Lifeline) — free, confidential, available 24/7. This service is not a substitute for emergency care.
+    </div>
+    <p class="disclaimer">
+      This is a therapist <em>matching</em> service, not therapy or medical advice. Alina Abraham is not a licensed clinician and does not provide diagnosis or treatment. Matches are suggestions to help you choose your own provider.
+    </p>
+    <p class="madeby">© <span id="yr"></span> Alina Abraham · Therapist Match</p>
+  </div>
+</footer>
+
+<script>
+  // reveal-on-scroll
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  // hero fades in immediately on load
+  window.addEventListener('load',()=>{
+    document.querySelectorAll('header .fade').forEach(el=>el.classList.add('in'));
+  });
+</script>
+</body>
+</html>
