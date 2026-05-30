@@ -18,11 +18,11 @@
     --border: #E0E8E1;
     --white: #FFFFFF;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
@@ -30,7 +30,7 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-
+ 
   /* NAV */
   nav {
     position: fixed;
@@ -44,7 +44,7 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .nav-logo {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
@@ -52,13 +52,13 @@
     text-decoration: none;
     letter-spacing: 0.02em;
   }
-
+ 
   .nav-links {
     display: flex;
     gap: 32px;
     list-style: none;
   }
-
+ 
   .nav-links a {
     font-size: 0.85rem;
     color: var(--ink-soft);
@@ -68,9 +68,9 @@
     font-weight: 500;
     transition: color 0.2s;
   }
-
+ 
   .nav-links a:hover { color: var(--sage); }
-
+ 
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -80,7 +80,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .hero::before {
     content: '';
     position: absolute;
@@ -89,7 +89,7 @@
     background: radial-gradient(circle, rgba(122,158,126,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
-
+ 
   .hero::after {
     content: '';
     position: absolute;
@@ -98,7 +98,7 @@
     background: radial-gradient(circle, rgba(196,151,58,0.07) 0%, transparent 70%);
     pointer-events: none;
   }
-
+ 
   .hero-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -107,7 +107,7 @@
     gap: 80px;
     align-items: center;
   }
-
+ 
   .hero-eyebrow {
     font-size: 0.75rem;
     letter-spacing: 0.15em;
@@ -116,7 +116,7 @@
     font-weight: 500;
     margin-bottom: 20px;
   }
-
+ 
   .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.4rem, 4vw, 3.6rem);
@@ -124,12 +124,12 @@
     color: var(--ink);
     margin-bottom: 24px;
   }
-
+ 
   .hero h1 em {
     font-style: italic;
     color: var(--sage);
   }
-
+ 
   .hero-sub {
     font-size: 1.05rem;
     color: var(--ink-soft);
@@ -137,13 +137,13 @@
     margin-bottom: 40px;
     font-weight: 300;
   }
-
+ 
   .hero-cta-group {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
   }
-
+ 
   .btn-primary {
     display: inline-block;
     padding: 14px 32px;
@@ -157,12 +157,12 @@
     transition: all 0.25s;
     border: 2px solid var(--sage);
   }
-
+ 
   .btn-primary:hover {
     background: transparent;
     color: var(--sage);
   }
-
+ 
   .btn-secondary {
     display: inline-block;
     padding: 14px 32px;
@@ -176,18 +176,18 @@
     border: 2px solid var(--border);
     transition: all 0.25s;
   }
-
+ 
   .btn-secondary:hover {
     border-color: var(--ink-soft);
     color: var(--ink);
   }
-
+ 
   .hero-visual {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
-
+ 
   .stat-card {
     background: white;
     border: 1px solid var(--border);
@@ -199,9 +199,9 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     transition: transform 0.2s;
   }
-
+ 
   .stat-card:hover { transform: translateY(-2px); }
-
+ 
   .stat-icon {
     width: 40px; height: 40px;
     background: var(--sage-pale);
@@ -212,30 +212,30 @@
     font-size: 1.1rem;
     flex-shrink: 0;
   }
-
+ 
   .stat-number {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     color: var(--ink);
     line-height: 1;
   }
-
+ 
   .stat-label {
     font-size: 0.8rem;
     color: var(--ink-muted);
     margin-top: 4px;
   }
-
+ 
   /* SECTION SHARED */
   section {
     padding: 100px 40px;
   }
-
+ 
   .section-inner {
     max-width: 1100px;
     margin: 0 auto;
   }
-
+ 
   .section-tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -248,7 +248,7 @@
     border-radius: 100px;
     margin-bottom: 20px;
   }
-
+ 
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -256,7 +256,7 @@
     color: var(--ink);
     margin-bottom: 16px;
   }
-
+ 
   .section-sub {
     font-size: 1rem;
     color: var(--ink-soft);
@@ -264,14 +264,14 @@
     font-weight: 300;
     max-width: 560px;
   }
-
+ 
   /* MVT A — THERAPIST MATCH */
   .mvt-a {
     background: white;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .mvt-a-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -279,19 +279,19 @@
     align-items: start;
     margin-top: 60px;
   }
-
+ 
   .match-steps {
     display: flex;
     flex-direction: column;
     gap: 28px;
   }
-
+ 
   .match-step {
     display: flex;
     gap: 20px;
     align-items: flex-start;
   }
-
+ 
   .step-num {
     width: 32px; height: 32px;
     background: var(--sage);
@@ -305,20 +305,20 @@
     flex-shrink: 0;
     margin-top: 2px;
   }
-
+ 
   .step-text h4 {
     font-weight: 500;
     font-size: 0.95rem;
     margin-bottom: 4px;
   }
-
+ 
   .step-text p {
     font-size: 0.875rem;
     color: var(--ink-soft);
     line-height: 1.6;
     font-weight: 300;
   }
-
+ 
   .match-pricing-card {
     background: var(--sage-pale);
     border: 1px solid var(--sage-light);
@@ -326,7 +326,7 @@
     padding: 40px;
     text-align: center;
   }
-
+ 
   .price-tag {
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
@@ -334,36 +334,36 @@
     line-height: 1;
     margin-bottom: 8px;
   }
-
+ 
   .price-desc {
     font-size: 0.875rem;
     color: var(--ink-soft);
     margin-bottom: 8px;
     font-weight: 300;
   }
-
+ 
   .price-guarantee {
     font-size: 0.8rem;
     color: var(--sage);
     font-weight: 500;
     margin-bottom: 32px;
   }
-
+ 
   /* MVT B — SESSION COMPANION */
   .mvt-b {
     background: var(--ink);
     color: white;
   }
-
+ 
   .mvt-b .section-tag {
     color: var(--sage-light);
     border-color: rgba(181,204,183,0.3);
   }
-
+ 
   .mvt-b .section-title { color: white; }
-
+ 
   .mvt-b .section-sub { color: rgba(255,255,255,0.6); }
-
+ 
   .companion-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -371,7 +371,7 @@
     align-items: start;
     margin-top: 60px;
   }
-
+ 
   .companion-pricing {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
@@ -379,25 +379,25 @@
     padding: 40px;
     text-align: center;
   }
-
+ 
   .companion-pricing .price-tag {
     color: var(--sage-light);
   }
-
+ 
   .companion-pricing .price-desc {
     color: rgba(255,255,255,0.5);
   }
-
+ 
   .companion-pricing .price-guarantee {
     color: var(--sage-light);
   }
-
+ 
   .service-features {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-
+ 
   .feature-row {
     display: flex;
     gap: 16px;
@@ -407,27 +407,27 @@
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 10px;
   }
-
+ 
   .feature-icon {
     font-size: 1.2rem;
     flex-shrink: 0;
     margin-top: 2px;
   }
-
+ 
   .feature-text h4 {
     font-size: 0.9rem;
     font-weight: 500;
     color: white;
     margin-bottom: 4px;
   }
-
+ 
   .feature-text p {
     font-size: 0.825rem;
     color: rgba(255,255,255,0.5);
     line-height: 1.6;
     font-weight: 300;
   }
-
+ 
   .timeline-strip {
     display: flex;
     gap: 0;
@@ -436,16 +436,16 @@
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
   }
-
+ 
   .timeline-item {
     flex: 1;
     padding: 20px 16px;
     text-align: center;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
-
+ 
   .timeline-item:last-child { border-right: none; }
-
+ 
   .timeline-day {
     font-size: 0.7rem;
     letter-spacing: 0.1em;
@@ -453,13 +453,13 @@
     color: var(--sage-light);
     margin-bottom: 6px;
   }
-
+ 
   .timeline-label {
     font-size: 0.8rem;
     color: rgba(255,255,255,0.6);
     line-height: 1.4;
   }
-
+ 
   .btn-light {
     display: inline-block;
     padding: 14px 32px;
@@ -474,24 +474,24 @@
     border: 2px solid white;
     margin-top: 32px;
   }
-
+ 
   .btn-light:hover {
     background: transparent;
     color: white;
   }
-
+ 
   /* HOW IT WORKS FORMS SECTION */
   .forms-section {
     background: var(--cream);
   }
-
+ 
   .forms-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 56px;
   }
-
+ 
   .form-card {
     background: white;
     border: 1px solid var(--border);
@@ -500,7 +500,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .form-card::before {
     content: '';
     position: absolute;
@@ -508,7 +508,7 @@
     height: 3px;
     background: var(--sage);
   }
-
+ 
   .form-card-label {
     font-size: 0.7rem;
     letter-spacing: 0.12em;
@@ -517,13 +517,13 @@
     font-weight: 500;
     margin-bottom: 12px;
   }
-
+ 
   .form-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     margin-bottom: 12px;
   }
-
+ 
   .form-card p {
     font-size: 0.85rem;
     color: var(--ink-soft);
@@ -531,14 +531,14 @@
     font-weight: 300;
     margin-bottom: 20px;
   }
-
+ 
   .form-questions {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
-
+ 
   .form-questions li {
     font-size: 0.8rem;
     color: var(--ink-muted);
@@ -547,32 +547,32 @@
     align-items: flex-start;
     line-height: 1.5;
   }
-
+ 
   .form-questions li::before {
     content: '→';
     color: var(--sage-light);
     flex-shrink: 0;
   }
-
+ 
   /* ABOUT */
   .about-section {
     background: white;
     border-top: 1px solid var(--border);
   }
-
+ 
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 80px;
     align-items: center;
   }
-
+ 
   .about-name {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
     margin-bottom: 8px;
   }
-
+ 
   .about-title {
     font-size: 0.85rem;
     color: var(--sage);
@@ -581,14 +581,14 @@
     font-weight: 500;
     margin-bottom: 24px;
   }
-
+ 
   .about-body {
     font-size: 0.95rem;
     color: var(--ink-soft);
     line-height: 1.8;
     font-weight: 300;
   }
-
+ 
   .about-placeholder {
     width: 100%;
     aspect-ratio: 4/5;
@@ -599,32 +599,32 @@
     justify-content: center;
     border: 1px solid var(--border);
   }
-
+ 
   .about-placeholder-text {
     font-size: 0.8rem;
     color: var(--sage);
     letter-spacing: 0.05em;
   }
-
+ 
   /* FOOTER */
   footer {
     padding: 48px 40px;
     text-align: center;
     border-top: 1px solid var(--border);
   }
-
+ 
   .footer-logo {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     color: var(--ink);
     margin-bottom: 8px;
   }
-
+ 
   .footer-sub {
     font-size: 0.8rem;
     color: var(--ink-muted);
   }
-
+ 
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
@@ -641,13 +641,13 @@
     .timeline-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .timeline-item:last-child { border-bottom: none; }
   }
-
+ 
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
+ 
   .hero-eyebrow { animation: fadeUp 0.6s ease both; }
   .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
   .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
@@ -655,7 +655,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Mental Meter</a>
@@ -666,7 +666,7 @@
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
@@ -704,14 +704,14 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- MVT A — THERAPIST MATCH -->
 <section class="mvt-a" id="therapist-match">
   <div class="section-inner">
     <span class="section-tag">Service 01 — Therapist Match</span>
     <h2 class="section-title">Stop guessing. Get 3 therapists<br>who actually fit you.</h2>
     <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I'll do the research, ask the right questions, and hand you 3 hand-picked matches with a brief on why each one could work for you.</p>
-
+ 
     <div class="mvt-a-grid">
       <div class="match-steps">
         <div class="match-step">
@@ -736,7 +736,7 @@
           </div>
         </div>
       </div>
-
+ 
       <div class="match-pricing-card">
         <div class="price-tag">$75</div>
         <div class="price-desc">One-time · Delivered within 5 business days</div>
@@ -747,14 +747,14 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- MVT B — SESSION COMPANION -->
 <section class="mvt-b" id="session-companion">
   <div class="section-inner">
     <span class="section-tag">Service 02 — 2-Week Check-In</span>
     <h2 class="section-title">14 days of showing up<br>for yourself — for $3.</h2>
     <p class="section-sub">A simple daily check-in sent to your phone every evening. You answer 5 quick questions. At the end of 2 weeks, you get a progress summary you can actually bring to therapy.</p>
-
+ 
     <div class="companion-grid">
       <div>
         <div class="service-features">
@@ -788,7 +788,7 @@
           </div>
         </div>
       </div>
-
+ 
       <div>
         <div class="companion-pricing">
           <div style="display:inline-block; background:rgba(181,204,183,0.2); border:1px solid rgba(181,204,183,0.4); border-radius:100px; padding:4px 14px; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage-light); margin-bottom:16px;">One-Time Payment</div>
@@ -798,7 +798,7 @@
           <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-light" style="width:100%; text-align:center; display:block;">Start My 2 Weeks →</a>
           <p style="font-size:0.75rem; color:rgba(255,255,255,0.35); margin-top:16px; line-height:1.5;">After payment, you'll get a quick form asking for your name and phone number. That's how I send your nightly check-in link. Your first one arrives at 8pm.</p>
         </div>
-
+ 
         <div class="timeline-strip">
           <div class="timeline-item">
             <div class="timeline-day">Day 1</div>
@@ -825,14 +825,14 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FORMS / HOW IT WORKS -->
 <section class="forms-section" id="how-it-works">
   <div class="section-inner">
     <span class="section-tag">The 2-Week Check-In — In Detail</span>
     <h2 class="section-title">Three forms. Zero fluff.</h2>
     <p class="section-sub">The check-in is built around three focused forms. Each one is short on purpose. The goal is consistency, not perfection.</p>
-
+ 
     <div class="forms-grid">
       <div class="form-card">
         <div class="form-card-label">Form 01 · One time</div>
@@ -845,7 +845,7 @@
           <li>What would make this 2 weeks worth it for you?</li>
         </ul>
       </div>
-
+ 
       <div class="form-card">
         <div class="form-card-label">Form 02 · Every night at 8pm</div>
         <h3>Daily Check-In</h3>
@@ -858,7 +858,7 @@
           <li>What do you need most right now?</li>
         </ul>
       </div>
-
+ 
       <div class="form-card">
         <div class="form-card-label">Form 03 · Day 7 & Day 14</div>
         <h3>Weekly Reflection</h3>
@@ -873,7 +873,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="section-inner">
@@ -896,19 +896,19 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- DISCLAIMER -->
 <div style="background:#f5f0eb; border-top:1px solid var(--border); padding:24px 40px; text-align:center;">
   <p style="font-size:0.75rem; color:var(--ink-muted); max-width:700px; margin:0 auto; line-height:1.7;">
     <strong style="color:var(--ink-soft);">Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. The services offered on this site are not a substitute for therapy, counseling, or any form of clinical treatment. If you are in crisis or experiencing a mental health emergency, please call or text <strong style="color:var(--sage)">988</strong> (Suicide & Crisis Lifeline) or contact your nearest emergency services immediately.
   </p>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Mental Meter</div>
   <div class="footer-sub">Built by Alina Abraham · Athens, GA · Questions? Reach out at <span style="color:var(--sage)">Kaduvamma@gmail.com</span></div>
 </footer>
-
+ 
 </body>
 </html>
