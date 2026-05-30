@@ -1,378 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Find a therapist you'll actually click with</title>
-<meta name="description" content="I'll personally find you 3 therapists you'll actually click with. $75. Money back if I can't." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Meter — Alina Abraham</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* =========================================================
-     EDIT THESE TWO LINKS  ↓↓↓
-     1. Replace https://calendly.com/alinaabraham05/30min with your $75 Stripe payment link
-        (set the Stripe success/redirect URL to your Calendly intake page)
-     2. Replace Alina Abraham and the bracketed bio text in the "Who I am" section
-     ========================================================= */
-
-  :root{
-    --bg:#f4eede;          /* warm oat */
-    --bg-2:#efe7d4;        /* deeper oat band */
-    --surface:#fbf7ee;     /* card cream */
-    --ink:#28241d;         /* warm near-black */
-    --ink-soft:#5f574a;    /* muted brown-grey */
-    --sage:#46613f;        /* grounded healing green */
-    --sage-deep:#374f31;
-    --sage-tint:#dfe6d4;
-    --clay:#c2683f;        /* warm clay accent */
-    --clay-tint:#f0d9cb;
-    --line:#e2d8c2;
-    --shadow:28px 28px 60px rgba(64,52,33,.10);
-    --radius:26px;
+  :root {
+    --sage: #7A9E7E;
+    --sage-light: #B5CCB7;
+    --sage-pale: #EEF4EF;
+    --cream: #FAF8F4;
+    --ink: #1C1C1C;
+    --ink-soft: #4A4A4A;
+    --ink-muted: #8A8A8A;
+    --gold: #C4973A;
+    --border: #E0E8E1;
+    --white: #FFFFFF;
   }
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Hanken Grotesk',sans-serif;
-    font-size:18px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  /* subtle paper grain */
-  body::before{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  }
-  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 28px}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+  html { scroll-behavior: smooth; }
 
-  /* ---------- buttons ---------- */
-  .btn{
-    display:inline-flex;align-items:center;gap:.6rem;
-    background:var(--sage);color:#fdfaf2;
-    font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:1.06rem;
-    padding:1.05rem 2.1rem;border-radius:100px;text-decoration:none;
-    border:1px solid var(--sage-deep);
-    box-shadow:0 14px 28px -12px rgba(55,79,49,.55);
-    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s;
-    will-change:transform;
-  }
-  .btn:hover{transform:translateY(-3px);background:var(--sage-deep);box-shadow:0 22px 40px -14px rgba(55,79,49,.6)}
-  .btn:active{transform:translateY(-1px)}
-  .btn .arrow{transition:transform .25s}
-  .btn:hover .arrow{transform:translate(4px,-1px)}
-  .price-pill{
-    display:inline-flex;align-items:center;gap:.5rem;
-    font-size:.92rem;font-weight:600;color:var(--sage-deep);
-    background:var(--sage-tint);border:1px solid #cdd9c0;
-    padding:.45rem 1rem;border-radius:100px;letter-spacing:.01em;
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  /* ---------- hero ---------- */
-  header{position:relative;padding:clamp(3.5rem,8vw,7rem) 0 clamp(3rem,6vw,5.5rem)}
-  .blob{position:absolute;z-index:0;filter:blur(8px);opacity:.55;pointer-events:none}
-  .blob.one{width:520px;top:-120px;right:-160px;color:var(--sage-tint)}
-  .blob.two{width:360px;bottom:-160px;left:-150px;color:var(--clay-tint)}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:.55rem;
-    font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--clay);margin-bottom:1.6rem;
-  }
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--clay)}
-  header h1{
-    font-size:clamp(2.6rem,6.4vw,4.6rem);
-    max-width:14ch;margin-bottom:1.5rem;
-  }
-  header h1 em{font-style:italic;color:var(--sage);font-weight:500}
-  .lede{
-    font-size:clamp(1.15rem,2.3vw,1.45rem);
-    color:var(--ink-soft);max-width:34ch;margin-bottom:2.4rem;line-height:1.5;
-  }
-  .lede strong{color:var(--ink);font-weight:600}
-  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
-
-  /* fade-up animation */
-  .fade{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
-  .fade.in{opacity:1;transform:none}
-  header .fade:nth-child(1){transition-delay:.05s}
-  header .fade:nth-child(2){transition-delay:.15s}
-  header .fade:nth-child(3){transition-delay:.28s}
-  header .fade:nth-child(4){transition-delay:.4s}
-
-  /* ---------- section scaffolding ---------- */
-  section{position:relative;padding:clamp(3.2rem,7vw,6rem) 0}
-  .band{background:var(--bg-2)}
-  .label{
-    font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--sage);margin-bottom:1.1rem;
-  }
-  section h2{font-size:clamp(2rem,4.6vw,3.1rem);max-width:18ch;margin-bottom:1.4rem}
-
-  /* ---------- problem ---------- */
-  .problem-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:start}
-  .problem-grid p{font-size:1.16rem;color:var(--ink-soft);margin-bottom:1.2rem;line-height:1.62}
-  .problem-grid p:last-child{margin-bottom:0}
-  .pull{
-    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.5rem,3vw,2rem);
-    line-height:1.3;color:var(--ink);
-    border-left:3px solid var(--clay);padding:.4rem 0 .4rem 1.6rem;
-  }
-  .pull span{color:var(--clay);font-style:normal;font-weight:600}
-
-  /* ---------- what you get ---------- */
-  .gets{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:.6rem}
-  .get{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:1.7rem 1.7rem 1.6rem;display:flex;gap:1.1rem;align-items:flex-start;
-    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
-  }
-  .get:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-  .get.full{grid-column:1 / -1;background:var(--sage);border-color:var(--sage-deep)}
-  .get .ic{
-    flex:0 0 auto;width:42px;height:42px;border-radius:13px;
-    background:var(--sage-tint);display:grid;place-items:center;color:var(--sage-deep);
-  }
-  .get.full .ic{background:rgba(255,255,255,.16);color:#fdfaf2}
-  .get h3{font-size:1.18rem;font-weight:600;margin-bottom:.3rem;letter-spacing:-.005em}
-  .get p{font-size:.98rem;color:var(--ink-soft);line-height:1.5}
-  .get.full h3,.get.full p{color:#fdfaf2}
-  .get.full p{color:#e7eede}
-
-  /* ---------- who I am ---------- */
-  .about{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.6rem,4vw,3rem);align-items:center}
-  .avatar{
-    width:128px;height:128px;border-radius:50%;flex:0 0 auto;
-    background:radial-gradient(circle at 32% 30%, #d8e0cb, var(--sage));
-    display:grid;place-items:center;color:#fdfaf2;
-    font-family:'Fraunces',serif;font-size:2.6rem;
-    box-shadow:0 18px 40px -18px rgba(55,79,49,.6);
-    border:5px solid var(--surface);
-  }
-  .about p{font-size:1.18rem;color:var(--ink-soft);line-height:1.6}
-  .about p strong{color:var(--ink);font-weight:600}
-  .editnote{
-    display:block;margin-top:1rem;font-size:.82rem;color:var(--clay);
-    background:var(--clay-tint);border:1px dashed #d9ad94;border-radius:12px;
-    padding:.7rem .9rem;line-height:1.45;
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250, 248, 244, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
 
-  /* ---------- faq ---------- */
-  .faq-list{margin-top:.5rem;border-top:1px solid var(--line)}
-  details{border-bottom:1px solid var(--line)}
-  summary{
-    list-style:none;cursor:pointer;padding:1.35rem .2rem;
-    display:flex;justify-content:space-between;align-items:center;gap:1.5rem;
-    font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;color:var(--ink);
-    transition:color .2s;
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
   }
-  summary:hover{color:var(--sage)}
-  summary::-webkit-details-marker{display:none}
-  .plus{flex:0 0 auto;width:26px;height:26px;position:relative;transition:transform .3s}
-  .plus::before,.plus::after{content:"";position:absolute;background:var(--sage);border-radius:2px}
-  .plus::before{top:12px;left:3px;width:20px;height:2.5px}
-  .plus::after{top:3px;left:12px;width:2.5px;height:20px;transition:transform .3s}
-  details[open] .plus{transform:rotate(90deg)}
-  details[open] .plus::after{transform:scaleY(0)}
-  details .ans{padding:0 .2rem 1.5rem;color:var(--ink-soft);font-size:1.05rem;max-width:62ch}
 
-  /* ---------- final cta ---------- */
-  .final{background:var(--sage);color:#fdfaf2;text-align:center;border-radius:34px;
-    padding:clamp(2.8rem,6vw,4.5rem) clamp(1.5rem,5vw,4rem);margin:0 28px;position:relative;overflow:hidden}
-  .final .wrap{padding:0}
-  .final h2{color:#fdfaf2;margin:0 auto 1.1rem;max-width:20ch;font-size:clamp(2rem,4.4vw,2.9rem)}
-  .final p{color:#e7eede;font-size:1.15rem;max-width:42ch;margin:0 auto 2.1rem}
-  .final .btn{background:#fdfaf2;color:var(--sage-deep);border-color:#fdfaf2;box-shadow:0 16px 34px -14px rgba(0,0,0,.4)}
-  .final .btn:hover{background:#fff;transform:translateY(-3px)}
-  .final .reassure{margin-top:1.3rem;font-size:.92rem;color:#cdd9c0}
-  .final .glow{position:absolute;width:600px;height:600px;border-radius:50%;
-    background:radial-gradient(circle, rgba(255,255,255,.14), transparent 60%);top:-280px;left:50%;transform:translateX(-50%);pointer-events:none}
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
 
-  /* ---------- footer ---------- */
-  footer{padding:3.4rem 0 4rem;text-align:center}
-  .crisis{
-    background:var(--surface);border:1px solid var(--line);border-radius:18px;
-    padding:1.2rem 1.4rem;max-width:640px;margin:0 auto 1.8rem;font-size:.98rem;color:var(--ink-soft);line-height:1.55;
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
   }
-  .crisis strong{color:var(--ink)}
-  .crisis a{color:var(--sage-deep);font-weight:600;text-decoration:none;border-bottom:1.5px solid var(--sage-tint)}
-  .disclaimer{font-size:.86rem;color:var(--ink-soft);max-width:620px;margin:0 auto;line-height:1.55;opacity:.85}
-  .madeby{margin-top:1.6rem;font-size:.82rem;color:var(--ink-soft);opacity:.7}
 
-  /* ---------- responsive ---------- */
-  @media(max-width:760px){
-    body{font-size:17px}
-    .problem-grid{grid-template-columns:1fr;gap:1.8rem}
-    .gets{grid-template-columns:1fr}
-    .about{grid-template-columns:1fr;text-align:center;justify-items:center}
-    .editnote{text-align:left}
-    .pull{font-size:1.4rem}
+  .nav-links a:hover { color: var(--sage); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
   }
-  @media(prefers-reduced-motion:reduce){
-    .fade{opacity:1;transform:none;transition:none}
-    *{scroll-behavior:auto}
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(122,158,126,0.12) 0%, transparent 70%);
+    pointer-events: none;
   }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -50px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(196,151,58,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--sage);
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    transition: all 0.25s;
+    border: 2px solid var(--sage);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--sage);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink-soft);
+    color: var(--ink);
+  }
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+  }
+
+  .stat-card:hover { transform: translateY(-2px); }
+
+  .stat-icon {
+    width: 40px; height: 40px;
+    background: var(--sage-pale);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 100px 40px;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    border: 1px solid var(--sage-light);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* MVT A — THERAPIST MATCH */
+  .mvt-a {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mvt-a-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .match-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .match-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 32px; height: 32px;
+    background: var(--sage);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text h4 {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .step-text p {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .match-pricing-card {
+    background: var(--sage-pale);
+    border: 1px solid var(--sage-light);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .price-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-desc {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+
+  .price-guarantee {
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  /* MVT B — SESSION COMPANION */
+  .mvt-b {
+    background: var(--ink);
+    color: white;
+  }
+
+  .mvt-b .section-tag {
+    color: var(--sage-light);
+    border-color: rgba(181,204,183,0.3);
+  }
+
+  .mvt-b .section-title { color: white; }
+
+  .mvt-b .section-sub { color: rgba(255,255,255,0.6); }
+
+  .companion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .companion-pricing {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .companion-pricing .price-tag {
+    color: var(--sage-light);
+  }
+
+  .companion-pricing .price-desc {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .companion-pricing .price-guarantee {
+    color: var(--sage-light);
+  }
+
+  .service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .feature-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+
+  .feature-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .feature-text h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .feature-text p {
+    font-size: 0.825rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .timeline-strip {
+    display: flex;
+    gap: 0;
+    margin-top: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .timeline-item {
+    flex: 1;
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .timeline-item:last-child { border-right: none; }
+
+  .timeline-day {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+    margin-bottom: 6px;
+  }
+
+  .timeline-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+  }
+
+  .btn-light {
+    display: inline-block;
+    padding: 14px 32px;
+    background: white;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 4px;
+    transition: all 0.25s;
+    border: 2px solid white;
+    margin-top: 32px;
+  }
+
+  .btn-light:hover {
+    background: transparent;
+    color: white;
+  }
+
+  /* HOW IT WORKS FORMS SECTION */
+  .forms-section {
+    background: var(--cream);
+  }
+
+  .forms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .form-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--sage);
+  }
+
+  .form-card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .form-card p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .form-questions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-questions li {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .form-questions li::before {
+    content: '→';
+    color: var(--sage-light);
+    flex-shrink: 0;
+  }
+
+  /* ABOUT */
+  .about-section {
+    background: white;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .about-title {
+    font-size: 0.85rem;
+    color: var(--sage);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .about-body {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .about-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--sage-pale);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+  }
+
+  .about-placeholder-text {
+    font-size: 0.8rem;
+    color: var(--sage);
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-inner,
+    .mvt-a-grid,
+    .companion-grid,
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .forms-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .timeline-strip { flex-direction: column; }
+    .timeline-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .timeline-item:last-child { border-bottom: none; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-cta-group { animation: fadeUp 0.6s 0.3s ease both; }
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<header>
-  <svg class="blob one" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M44.5,-67.6C57,-59.4,65.7,-45.6,71.2,-30.7C76.7,-15.8,79,0.2,75.3,15C71.6,29.8,61.9,43.4,49,53.6C36.1,63.8,20,70.6,2.7,67C-14.6,63.4,-29.2,49.4,-42.6,35.4C-56,21.4,-68.2,7.4,-69.9,-8.2C-71.6,-23.8,-62.8,-41,-49.4,-49.7C-36,-58.4,-18,-58.6,-0.7,-57.6C16.6,-56.6,33.2,-54.4,44.5,-67.6Z" transform="translate(100 100)"/></svg>
-  <svg class="blob two" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M39.3,-62.9C50.6,-55.6,59.3,-44.6,65.8,-32.1C72.3,-19.6,76.6,-5.6,74.6,7.6C72.6,20.8,64.3,33.2,53.9,43.9C43.5,54.6,31,63.6,16.7,68.4C2.4,73.2,-13.7,73.8,-27.8,68.5C-41.9,63.2,-54,52,-62.3,38.4C-70.6,24.8,-75.1,8.8,-72.7,-6C-70.3,-20.8,-61,-34.4,-49.3,-42.1C-37.6,-49.8,-23.5,-51.6,-9.6,-55.9C4.3,-60.2,18.6,-67,39.3,-62.9Z" transform="translate(100 100)"/></svg>
-  <div class="wrap">
-    <div class="eyebrow fade"><span class="dot"></span> Therapist matching, done by a human</div>
-    <h1 class="fade">Stop quitting therapy after one <em>bad therapist.</em></h1>
-    <p class="lede fade">I'll personally find you 3 therapists you'll actually click with. <strong>$75. Money back if I can't.</strong></p>
-    <div class="hero-cta fade">
-      <a class="btn" href="https://calendly.com/alinaabraham05/30min">Find my match <span class="arrow">→</span></a>
-      <span class="price-pill">✓ Full refund if I can't find 3 good fits</span>
-    </div>
-  </div>
-</header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mental Meter</a>
+  <ul class="nav-links">
+    <li><a href="#therapist-match">Therapist Match</a></li>
+    <li><a href="#session-companion">2-Week Check-In</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
 
-<!-- ============ THE PROBLEM ============ -->
-<section class="band">
-  <div class="wrap">
-    <p class="label fade">Why this is so hard</p>
-    <div class="problem-grid">
-      <div class="fade">
-        <p>You picked one from Psychology Today. It didn't click. Now the thought of starting over feels impossible — so you're stuck. Knowing you need help. Not getting it.</p>
-        <p>I've talked to 100+ people stuck in this exact loop. The directory is broken. It asks you to trust a stranger with your worst thoughts based on a headshot and a paragraph of jargon. Of course it doesn't work.</p>
-      </div>
-      <div class="fade">
-        <p class="pull">It isn't you. <span>The search is the broken part</span> — not you, and not therapy.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Mental Health · Made Personal</p>
+      <h1>You deserve support that actually <em>fits</em> where you are.</h1>
+      <p class="hero-sub">Whether you're still figuring out where to start or already in therapy and wanting more from it, you don't have to navigate this alone. I built two small, affordable services to meet you exactly where you are.</p>
+      <div class="hero-cta-group">
+        <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary">Find My Match — $75</a>
+        <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-secondary">2-Week Check-In — $3</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ WHAT YOU GET ============ -->
-<section>
-  <div class="wrap">
-    <p class="label fade">What you get</p>
-    <h2 class="fade">A real person doing the 10 hours of searching for you.</h2>
-    <div class="gets">
-      <div class="get fade">
-        <span class="ic">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5M8 3v4M16 3v4"/><circle cx="12" cy="14" r="3"/></svg>
-        </span>
-        <div><h3>A 30-minute intake call</h3><p>We figure out what you actually need — history, dealbreakers, what didn't work last time.</p></div>
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div class="stat-icon">🔄</div>
+        <div>
+          <div class="stat-number">1 in 3</div>
+          <div class="stat-label">people quit therapy after a single bad therapist fit</div>
+        </div>
       </div>
-      <div class="get fade">
-        <span class="ic">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5.5 21a7.5 7.5 0 0 1 13 0"/></svg>
-        </span>
-        <div><h3>3 hand-picked recommendations</h3><p>Delivered within 5 business days — chosen for you, not pulled from a list of 40 strangers.</p></div>
+      <div class="stat-card">
+        <div class="stat-icon">🕐</div>
+        <div>
+          <div class="stat-number">10 min</div>
+          <div class="stat-label">of every session spent recapping — not progressing</div>
+        </div>
       </div>
-      <div class="get fade">
-        <span class="ic">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
-        </span>
-        <div><h3>A 1-page "why this person" brief</h3><p>For every match — so you know exactly why they could be a fit before you reach out.</p></div>
-      </div>
-      <div class="get fade">
-        <span class="ic">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
-        </span>
-        <div><h3>Your format, your way</h3><p>Insurance, sliding-scale, telehealth, or in-person — I match to how you actually want to be seen.</p></div>
-      </div>
-      <div class="get full fade">
-        <span class="ic">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-        </span>
-        <div><h3>Money back if I can't find 3 good fits</h3><p>If I can't deliver three matches worth your time, you get a full refund. No questions, no hard feelings.</p></div>
+      <div class="stat-card">
+        <div class="stat-icon">📋</div>
+        <div>
+          <div class="stat-number">29%</div>
+          <div class="stat-label">of therapists cite client follow-through as their #1 barrier</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHO I AM ============ -->
-<section class="band">
-  <div class="wrap">
-    <p class="label fade">Who you'll be working with</p>
-    <div class="about fade">
-      <div class="avatar" aria-hidden="true">★</div>
+<!-- MVT A — THERAPIST MATCH -->
+<section class="mvt-a" id="therapist-match">
+  <div class="section-inner">
+    <span class="section-tag">Service 01 — Therapist Match</span>
+    <h2 class="section-title">Stop guessing. Get 3 therapists<br>who actually fit you.</h2>
+    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I'll do the research, ask the right questions, and hand you 3 hand-picked matches with a brief on why each one could work for you.</p>
+
+    <div class="mvt-a-grid">
+      <div class="match-steps">
+        <div class="match-step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>You pay & book a 30-minute intake call</h4>
+            <p>We talk through what you're dealing with, what's been tried, and what matters most: insurance, modality, personality, availability.</p>
+          </div>
+        </div>
+        <div class="match-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>I research and vet 3 matches for you</h4>
+            <p>Within 5 business days I send you 3 therapist recommendations, each with a short note on why they could be a good fit for you specifically.</p>
+          </div>
+        </div>
+        <div class="match-step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>You reach out & book with confidence</h4>
+            <p>In-person or telehealth, insurance or sliding scale, your call. Full refund if I can't find 3 good matches.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="match-pricing-card">
+        <div class="price-tag">$75</div>
+        <div class="price-desc">One-time · Delivered within 5 business days</div>
+        <div class="price-guarantee">✦ Full refund if I can't find 3 good fits</div>
+        <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary" style="width:100%; text-align:center; display:block;">Find My Match →</a>
+        <p style="font-size:0.75rem; color:var(--ink-muted); margin-top:16px; line-height:1.5;">Book your 30-minute intake call. Matches sent within 5 business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MVT B — SESSION COMPANION -->
+<section class="mvt-b" id="session-companion">
+  <div class="section-inner">
+    <span class="section-tag">Service 02 — 2-Week Check-In</span>
+    <h2 class="section-title">14 days of showing up<br>for yourself — for $3.</h2>
+    <p class="section-sub">A simple daily check-in sent to your phone every evening. You answer 5 quick questions. At the end of 2 weeks, you get a progress summary you can actually bring to therapy.</p>
+
+    <div class="companion-grid">
       <div>
-        <p>I'm <strong>Alina Abraham</strong>, a student at the University of Georgia. I'm not a therapist — <strong>I'm a Crisis Text Line volunteer</strong> who's spent over a year supporting people through their hardest moments. The same pattern keeps showing up: they tried therapy once, it didn't click, and they never went back. That's a fixable problem. I do the hours of filtering through directories so what lands in your inbox is three real options, not forty strangers.</p>
+        <div class="service-features">
+          <div class="feature-row">
+            <div class="feature-icon">📱</div>
+            <div class="feature-text">
+              <h4>Daily 8pm check-in — takes under 2 minutes</h4>
+              <p>A short form sent to your phone each night. How you're feeling, what's on your mind, whether you used anything from your last session.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">📈</div>
+            <div class="feature-text">
+              <h4>Your progress, tracked automatically</h4>
+              <p>Every response is saved. You can see your mood trend, your patterns, and what you keep coming back to, all in one place.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">📄</div>
+            <div class="feature-text">
+              <h4>A progress summary at day 7 and day 14</h4>
+              <p>A short, personal recap of your two weeks: what shifted, what stayed the same, and what might be worth bringing up in your next session.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-text">
+              <h4>Just between us</h4>
+              <p>Nothing is shared with your therapist unless you choose to share it yourself. This is for you first.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="companion-pricing">
+          <div style="display:inline-block; background:rgba(181,204,183,0.2); border:1px solid rgba(181,204,183,0.4); border-radius:100px; padding:4px 14px; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage-light); margin-bottom:16px;">One-Time Payment</div>
+          <div class="price-tag">$3</div>
+          <div class="price-desc">Pay once. Get the full 14-day service. No recurring charges, ever.</div>
+          <div class="price-guarantee">✦ Progress summary sent at day 7 & day 14</div>
+          <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-light" style="width:100%; text-align:center; display:block;">Start My 2 Weeks →</a>
+          <p style="font-size:0.75rem; color:rgba(255,255,255,0.35); margin-top:16px; line-height:1.5;">After payment, you'll get a quick form asking for your name and phone number. That's how I send your nightly check-in link. Your first one arrives at 8pm.</p>
+        </div>
+
+        <div class="timeline-strip">
+          <div class="timeline-item">
+            <div class="timeline-day">Day 1</div>
+            <div class="timeline-label">Intake form + first check-in</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-day">Days 2–6</div>
+            <div class="timeline-label">Daily 8pm check-ins</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-day">Day 7</div>
+            <div class="timeline-label">Week 1 summary sent</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-day">Days 8–13</div>
+            <div class="timeline-label">Daily 8pm check-ins</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-day">Day 14</div>
+            <div class="timeline-label">Final progress summary</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
-<section>
-  <div class="wrap">
-    <p class="label fade">Questions people ask</p>
-    <h2 class="fade">The honest answers.</h2>
-    <div class="faq-list fade">
-      <details open>
-        <summary>Is this therapy? <span class="plus"></span></summary>
-        <div class="ans">No. I'm not a clinician. I'm a curator who helps you filter providers and find a good fit faster.</div>
-      </details>
-      <details>
-        <summary>Do you take insurance? <span class="plus"></span></summary>
-        <div class="ans">I don't — but I'll prioritize therapists who take yours, so your matches actually fit your coverage.</div>
-      </details>
-      <details>
-        <summary>What if I don't like any of the 3? <span class="plus"></span></summary>
-        <div class="ans">Full money back, no questions. The whole point is that you walk away with options worth your time, or you walk away with your money.</div>
-      </details>
-      <details>
-        <summary>How fast is it? <span class="plus"></span></summary>
-        <div class="ans">Five business days from your intake call to your three matches.</div>
-      </details>
-      <details>
-        <summary>Where do you find them? <span class="plus"></span></summary>
-        <div class="ans">Public directories, my vetted network, and community recommendations — the same places you could look, except I do the 10 hours of work so you don't have to.</div>
-      </details>
+<!-- FORMS / HOW IT WORKS -->
+<section class="forms-section" id="how-it-works">
+  <div class="section-inner">
+    <span class="section-tag">The 2-Week Check-In — In Detail</span>
+    <h2 class="section-title">Three forms. Zero fluff.</h2>
+    <p class="section-sub">The check-in is built around three focused forms. Each one is short on purpose. The goal is consistency, not perfection.</p>
+
+    <div class="forms-grid">
+      <div class="form-card">
+        <div class="form-card-label">Form 01 · One time</div>
+        <h3>Getting Started</h3>
+        <p>Filled out before Day 1 so I understand where you're starting from. Takes about 5 minutes.</p>
+        <ul class="form-questions">
+          <li>What are you currently working on in therapy?</li>
+          <li>What does a "good week" look like for you?</li>
+          <li>What does a "hard week" look like for you?</li>
+          <li>What would make this 2 weeks worth it for you?</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-label">Form 02 · Every night at 8pm</div>
+        <h3>Daily Check-In</h3>
+        <p>A quick pulse check on how you're doing. Takes less than 2 minutes. Show up every day and the pattern tells you something.</p>
+        <ul class="form-questions">
+          <li>How are you feeling today? (1–10 scale)</li>
+          <li>What's been on your mind the most?</li>
+          <li>Anything you'd want to tell your therapist?</li>
+          <li>Did you use anything from your last session?</li>
+          <li>What do you need most right now?</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <div class="form-card-label">Form 03 · Day 7 & Day 14</div>
+        <h3>Weekly Reflection</h3>
+        <p>A chance to zoom out and look at the bigger picture. Your answers anchor your progress summary. Takes about 3 minutes.</p>
+        <ul class="form-questions">
+          <li>Compared to last week, how are you feeling?</li>
+          <li>One thing you noticed about yourself this week</li>
+          <li>One thing to focus on going into next week</li>
+          <li>How useful has this check-in been? (1–5 scale)</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section>
-  <div class="final fade">
-    <div class="glow"></div>
-    <div class="wrap">
-      <h2>You don't have to keep starting over.</h2>
-      <p>One intake call. Three real options. A person in your corner doing the part that's been stopping you.</p>
-      <a class="btn" href="https://calendly.com/alinaabraham05/30min">Find my match — $75 <span class="arrow">→</span></a>
-      <p class="reassure">Money back if I can't find 3 good fits.</p>
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-placeholder" style="padding:0; overflow:hidden; background:none; border:none;">
+        <img src="photo.png" alt="Alina Abraham" style="width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;" />
+      </div>
+      <div>
+        <span class="section-tag">About</span>
+        <div class="about-name">Alina Abraham</div>
+        <div class="about-title">UGA Student &nbsp;·&nbsp; Mental Health Advocate &nbsp;·&nbsp; Crisis Textline Volunteer</div>
+        <p class="about-body">
+          I've spent the last year talking to therapists, clinics, and people who quit therapy. Not because therapy failed them, but because the system made it too hard to stick with. The wrong fit, the sessions that felt like starting over, the weeks between appointments with nothing to hold onto.
+          <br><br>
+          These two services are my attempt to change that. Not with an app. Not with a platform. Just with real attention, a consistent structure, and the belief that showing up for yourself, even for 2 minutes a day, is worth something.
+          <br><br>
+          I'm a UGA student testing whether this idea is real. If it helps you, it helps me know whether to keep building.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- DISCLAIMER -->
+<div style="background:#f5f0eb; border-top:1px solid var(--border); padding:24px 40px; text-align:center;">
+  <p style="font-size:0.75rem; color:var(--ink-muted); max-width:700px; margin:0 auto; line-height:1.7;">
+    <strong style="color:var(--ink-soft);">Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. The services offered on this site are not a substitute for therapy, counseling, or any form of clinical treatment. If you are in crisis or experiencing a mental health emergency, please call or text <strong style="color:var(--sage)">988</strong> (Suicide & Crisis Lifeline) or contact your nearest emergency services immediately.
+  </p>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    <div class="crisis">
-      <strong>If you're in crisis or thinking about harming yourself, please reach out now.</strong><br>
-      Call or text <a href="tel:988">988</a> (the Suicide &amp; Crisis Lifeline) — free, confidential, available 24/7. This service is not a substitute for emergency care.
-    </div>
-    <p class="disclaimer">
-      This is a therapist <em>matching</em> service, not therapy or medical advice. Alina Abraham is not a licensed clinician and does not provide diagnosis or treatment. Matches are suggestions to help you choose your own provider.
-    </p>
-    <p class="madeby">© <span id="yr"></span> Alina Abraham · Therapist Match</p>
-  </div>
+  <div class="footer-logo">Mental Meter</div>
+  <div class="footer-sub">Built by Alina Abraham · Athens, GA · Questions? Reach out at <span style="color:var(--sage)">Kaduvamma@gmail.com</span></div>
 </footer>
 
-<script>
-  // reveal-on-scroll
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.12});
-  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-  // hero fades in immediately on load
-  window.addEventListener('load',()=>{
-    document.querySelectorAll('header .fade').forEach(el=>el.classList.add('in'));
-  });
-</script>
 </body>
 </html>
