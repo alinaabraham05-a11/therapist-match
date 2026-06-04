@@ -19,7 +19,6 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
@@ -31,590 +30,326 @@
 
   /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(250,248,244,0.95);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,248,244,0.96);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--ink);
-    text-decoration: none;
-  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--ink); text-decoration: none; }
   .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
+  .nav-links a { font-size: 0.95rem; color: var(--ink-soft); text-decoration: none; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover { color: var(--sage); }
 
-  /* HERO */
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-block; padding: 15px 34px;
+    background: var(--sage); color: white;
+    text-decoration: none; font-size: 1rem; font-weight: 500;
+    border-radius: 6px; border: 2px solid var(--sage); transition: all 0.25s;
+  }
+  .btn-primary:hover { background: transparent; color: var(--sage); }
+  .btn-secondary {
+    display: inline-block; padding: 15px 34px;
+    background: transparent; color: rgba(255,255,255,0.85);
+    text-decoration: none; font-size: 1rem; font-weight: 500;
+    border-radius: 6px; border: 2px solid rgba(255,255,255,0.35); transition: all 0.25s;
+  }
+  .btn-secondary:hover { border-color: white; color: white; }
+  .btn-light {
+    display: inline-block; padding: 15px 34px;
+    background: white; color: var(--ink);
+    text-decoration: none; font-size: 1rem; font-weight: 500;
+    border-radius: 6px; border: 2px solid white; transition: all 0.25s;
+  }
+  .btn-light:hover { background: transparent; color: white; }
+  .btn-sage-outline {
+    display: inline-block; padding: 15px 34px;
+    background: transparent; color: var(--sage);
+    text-decoration: none; font-size: 1rem; font-weight: 500;
+    border-radius: 6px; border: 2px solid var(--sage); transition: all 0.25s;
+  }
+  .btn-sage-outline:hover { background: var(--sage); color: white; }
+
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: stretch;
     padding-top: 80px;
-    background: var(--ink);
+    background: #1a1a1a;
   }
 
   .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 60px 80px 60px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-right img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-    opacity: 0.85;
-  }
-
-  .hero-right::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(28,28,28,0.5) 0%, transparent 40%);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 72px 56px 72px 64px;
   }
 
   .hero-eyebrow {
-    font-size: 0.9rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage-light);
-    font-weight: 500;
-    margin-bottom: 24px;
+    font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage-light); font-weight: 500; margin-bottom: 22px;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-    line-height: 1.2;
-    color: #fff;
-    margin-bottom: 24px;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    line-height: 1.2; color: #fff; margin-bottom: 22px;
   }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--sage-light);
-  }
+  .hero h1 em { font-style: italic; color: var(--sage-light); }
 
   .hero-sub {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.75;
-    margin-bottom: 40px;
-    font-weight: 300;
+    font-size: 1.05rem; color: rgba(255,255,255,0.65);
+    line-height: 1.75; margin-bottom: 40px; font-weight: 300;
   }
+  .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
-
-  /* BUTTONS */
-  .btn-primary {
-    display: inline-block;
-    padding: 16px 36px;
-    background: var(--sage);
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    border: 2px solid var(--sage);
-    transition: all 0.25s;
-  }
-  .btn-primary:hover { background: transparent; color: var(--sage-light); border-color: var(--sage-light); }
-
-  .btn-secondary {
-    display: inline-block;
-    padding: 16px 36px;
-    background: transparent;
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    border: 2px solid rgba(255,255,255,0.3);
-    transition: all 0.25s;
-  }
-  .btn-secondary:hover { border-color: white; color: white; }
-
-  .btn-light {
-    display: inline-block;
-    padding: 16px 36px;
-    background: white;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    border: 2px solid white;
-    transition: all 0.25s;
-  }
-  .btn-light:hover { background: transparent; color: white; }
-
-  /* STATS BAR */
-  .stats-bar {
-    background: #111;
-    padding: 48px 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  .stats-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-  .stat-card {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    padding: 28px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-  }
-  .stat-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-  }
-  .stat-source {
-    font-size: 0.85rem;
-    color: var(--sage-light);
-    margin-top: 8px;
-  }
-  .stat-source a {
-    color: var(--sage-light);
-    text-decoration: underline;
-  }
-
-  /* SECTION SHARED */
-  section { padding: 100px 40px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-
-  .section-tag {
-    display: inline-block;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 500;
-    border: 1px solid var(--sage-light);
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 20px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 16px;
-  }
-
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.75;
-    font-weight: 300;
-    max-width: 580px;
-  }
-
-  /* MVT A */
-  .mvt-a {
-    background: white;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mvt-a-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    margin-top: 60px;
-  }
-
-  .match-steps { display: flex; flex-direction: column; gap: 28px; }
-
-  .match-step { display: flex; gap: 20px; align-items: flex-start; }
-
-  .step-num {
-    width: 36px; height: 36px;
-    background: var(--sage);
-    color: white;
-    border-radius: 50%;
+  /* Hero right: framed image with rounded corners and inset padding */
+  .hero-right {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    flex-shrink: 0;
-    margin-top: 2px;
+    padding: 48px 48px 48px 24px;
   }
 
-  .step-text h4 { font-weight: 500; font-size: 1rem; margin-bottom: 6px; }
-  .step-text p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; }
-
-  .match-pricing-card {
-    background: var(--sage-pale);
-    border: 1px solid var(--sage-light);
-    border-radius: 16px;
-    padding: 44px;
-    text-align: center;
+  .hero-img-frame {
+    width: 100%;
+    height: 100%;
+    max-height: 680px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.45);
   }
 
-  .price-tag {
+  .hero-img-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 25%;
+    display: block;
+  }
+
+  /* subtle caption badge on top of the hero image */
+  .hero-img-badge {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    background: rgba(28,28,28,0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px 20px;
+    color: white;
+  }
+  .hero-img-badge-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 2px; }
+  .hero-img-badge-sub { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+
+  /* ── STATS BAR ── */
+  .stats-bar { background: #111; padding: 52px 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+  }
+  .stat-card {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 28px 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;
+  }
+  .stat-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .stat-source { font-size: 0.85rem; color: var(--sage-light); margin-top: 8px; }
+  .stat-source a { color: var(--sage-light); text-decoration: underline; }
+
+  /* SHARED SECTION */
+  section { padding: 96px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--sage); font-weight: 500;
+    border: 1px solid var(--sage-light); padding: 5px 14px;
+    border-radius: 100px; margin-bottom: 18px;
+  }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 2.8vw, 2.6rem); line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+  .section-sub { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.75; font-weight: 300; max-width: 560px; }
+
+  /* ── SERVICE A ── */
+  .mvt-a { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .mvt-a-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-top: 56px; }
+
+  /* image-led left side for Service A */
+  .service-a-visual {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    aspect-ratio: 4/5;
+  }
+  .service-a-visual img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block;
+  }
+  .service-a-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(20,20,20,0.75) 0%, transparent 55%);
+  }
+  .service-a-visual-label {
+    position: absolute; bottom: 28px; left: 28px; right: 28px;
+    color: white;
+  }
+  .service-a-visual-label h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 10px;
+    font-size: 1.5rem; margin-bottom: 6px;
   }
+  .service-a-visual-label p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
 
-  .price-desc { font-size: 1rem; color: var(--ink-soft); margin-bottom: 10px; font-weight: 300; }
-  .price-guarantee { font-size: 0.95rem; color: var(--sage); font-weight: 500; margin-bottom: 32px; }
+  .service-a-right { display: flex; flex-direction: column; gap: 0; }
+  .match-steps { display: flex; flex-direction: column; gap: 24px; margin-bottom: 36px; }
+  .match-step { display: flex; gap: 18px; align-items: flex-start; }
+  .step-num {
+    width: 34px; height: 34px; background: var(--sage); color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 500; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-text h4 { font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
+  .step-text p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.6; font-weight: 300; }
 
-  /* MVT B */
+  .pricing-pill {
+    background: var(--sage-pale); border: 1px solid var(--sage-light);
+    border-radius: 14px; padding: 32px; text-align: center;
+  }
+  .price-tag { font-family: 'Playfair Display', serif; font-size: 3.6rem; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+  .price-desc { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 8px; font-weight: 300; }
+  .price-guarantee { font-size: 0.95rem; color: var(--sage); font-weight: 500; margin-bottom: 24px; }
+  .pricing-note { font-size: 0.9rem; color: var(--ink-muted); margin-top: 14px; line-height: 1.6; }
+
+  /* ── SERVICE B ── */
   .mvt-b { background: var(--ink); color: white; }
   .mvt-b .section-tag { color: var(--sage-light); border-color: rgba(181,204,183,0.3); }
   .mvt-b .section-title { color: white; }
   .mvt-b .section-sub { color: rgba(255,255,255,0.6); }
 
-  .companion-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    margin-top: 60px;
+  .mvt-b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-top: 56px; }
+
+  .service-b-left { display: flex; flex-direction: column; gap: 16px; }
+  .feature-row {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 20px 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+  }
+  .feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .feature-text h4 { font-size: 0.95rem; font-weight: 500; color: white; margin-bottom: 4px; }
+  .feature-text p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+
+  .service-b-right { display: flex; flex-direction: column; gap: 24px; }
+
+  /* Framed journaling image inside service B */
+  .service-b-img-frame {
+    border-radius: 18px; overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    aspect-ratio: 16/10;
+  }
+  .service-b-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .service-b-img-frame-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(28,28,28,0.7) 0%, transparent 50%);
+  }
+  .service-b-img-caption {
+    position: absolute; bottom: 20px; left: 24px; right: 24px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.75); font-style: italic; line-height: 1.5;
   }
 
   .companion-pricing {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 44px;
-    text-align: center;
+    border-radius: 14px; padding: 36px; text-align: center;
   }
-
-  .companion-pricing .price-tag { color: var(--sage-light); }
-  .companion-pricing .price-desc { color: rgba(255,255,255,0.55); }
-  .companion-pricing .price-guarantee { color: var(--sage-light); }
-
   .one-time-badge {
     display: inline-block;
-    background: rgba(181,204,183,0.2);
-    border: 1px solid rgba(181,204,183,0.4);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sage-light);
-    margin-bottom: 16px;
+    background: rgba(181,204,183,0.18); border: 1px solid rgba(181,204,183,0.35);
+    border-radius: 100px; padding: 5px 16px;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage-light); margin-bottom: 14px;
   }
-
-  .companion-note {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.4);
-    margin-top: 16px;
-    line-height: 1.6;
-  }
-
-  .service-features { display: flex; flex-direction: column; gap: 20px; }
-
-  .feature-row {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 22px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-  }
-
-  .feature-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
-  .feature-text h4 { font-size: 0.95rem; font-weight: 500; color: white; margin-bottom: 5px; }
-  .feature-text p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+  .companion-pricing .price-tag { color: var(--sage-light); }
+  .companion-pricing .price-desc { color: rgba(255,255,255,0.5); }
+  .companion-pricing .price-guarantee { color: var(--sage-light); }
+  .companion-note { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: 14px; line-height: 1.6; }
 
   .timeline-strip {
-    display: flex;
-    margin-top: 48px;
-    border-radius: 10px;
-    overflow: hidden;
+    display: flex; border-radius: 10px; overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
   }
-
   .timeline-item {
-    flex: 1;
-    padding: 18px 12px;
-    text-align: center;
+    flex: 1; padding: 16px 10px; text-align: center;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
   .timeline-item:last-child { border-right: none; }
+  .timeline-day { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 5px; }
+  .timeline-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
 
-  .timeline-day {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sage-light);
-    margin-bottom: 6px;
-  }
-
-  .timeline-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
-
-  /* JOURNALING VISUAL SECTION */
-  .visual-section {
-    background: var(--cream);
-    padding: 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .visual-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 560px;
-  }
-
-  .visual-split-img {
-    overflow: hidden;
-  }
-
-  .visual-split-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-  }
-
-  .visual-split-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 72px;
-    background: white;
-  }
-
-  .visual-split-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-    line-height: 1.25;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .visual-split-text p {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 36px;
-  }
-
-  /* FORMS */
+  /* ── FORMS ── */
   .forms-section { background: var(--cream); }
-
-  .forms-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 56px;
-  }
-
+  .forms-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 52px; }
   .form-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 32px;
+    position: relative; overflow: hidden;
   }
-
   .form-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--sage);
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--sage);
   }
-
-  .form-card-label {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sage);
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-
-  .form-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-  }
-
-  .form-card > p {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    line-height: 1.65;
-    font-weight: 300;
-    margin-bottom: 20px;
-  }
-
-  .form-questions { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .form-questions li {
-    font-size: 0.9rem;
-    color: var(--ink-muted);
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    line-height: 1.5;
-  }
-
+  .form-card-label { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage); font-weight: 500; margin-bottom: 10px; }
+  .form-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 10px; }
+  .form-card > p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; margin-bottom: 18px; }
+  .form-questions { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .form-questions li { font-size: 0.9rem; color: var(--ink-muted); display: flex; gap: 9px; align-items: flex-start; line-height: 1.5; }
   .form-questions li::before { content: '→'; color: var(--sage-light); flex-shrink: 0; }
 
-  /* ABOUT */
+  /* ── ABOUT ── */
   .about-section { background: white; border-top: 1px solid var(--border); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 80px;
-    align-items: center;
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center; }
+  .about-img-frame {
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
   }
+  .about-img-frame img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .about-name { font-family: 'Playfair Display', serif; font-size: 2.1rem; margin-bottom: 8px; }
+  .about-title { font-size: 0.9rem; color: var(--sage); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 24px; }
+  .about-body { font-size: 1rem; color: var(--ink-soft); line-height: 1.85; font-weight: 300; }
 
-  .about-img-wrap {
-    overflow: hidden;
-    border-radius: 12px;
-  }
+  /* ── DISCLAIMER ── */
+  .disclaimer { background: #f5f0eb; border-top: 1px solid var(--border); padding: 32px 48px; text-align: center; }
+  .disclaimer p { font-size: 0.95rem; color: var(--ink-muted); max-width: 760px; margin: 0 auto; line-height: 1.75; }
 
-  .about-img-wrap img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-  }
-
-  .about-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    margin-bottom: 8px;
-  }
-
-  .about-title {
-    font-size: 0.95rem;
-    color: var(--sage);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    margin-bottom: 28px;
-  }
-
-  .about-body {
-    font-size: 1rem;
-    color: var(--ink-soft);
-    line-height: 1.85;
-    font-weight: 300;
-  }
-
-  /* DISCLAIMER */
-  .disclaimer {
-    background: #f5f0eb;
-    border-top: 1px solid var(--border);
-    padding: 32px 40px;
-    text-align: center;
-  }
-
-  .disclaimer p {
-    font-size: 0.95rem;
-    color: var(--ink-muted);
-    max-width: 760px;
-    margin: 0 auto;
-    line-height: 1.75;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 48px 40px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-
+  /* ── FOOTER ── */
+  footer { padding: 44px 48px; text-align: center; border-top: 1px solid var(--border); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px; }
   .footer-sub { font-size: 0.95rem; color: var(--ink-muted); }
 
   /* RESPONSIVE */
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
     section { padding: 64px 20px; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 100px 24px 60px; }
-    .hero-right { height: 300px; }
-    .stats-inner,
-    .mvt-a-grid,
-    .companion-grid,
-    .about-grid,
-    .visual-split { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 96px 24px 40px; }
+    .hero-right { padding: 0 24px 48px; }
+    .hero-img-frame { max-height: 320px; }
+    .stats-inner, .mvt-a-grid, .mvt-b-grid, .about-grid { grid-template-columns: 1fr; }
     .forms-grid { grid-template-columns: 1fr; }
     .timeline-strip { flex-direction: column; }
     .timeline-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .timeline-item:last-child { border-bottom: none; }
-    .visual-split-text { padding: 48px 24px; }
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-eyebrow { animation: fadeUp 0.6s ease both; }
-  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
-  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
-  .hero-cta-group { animation: fadeUp 0.6s 0.3s ease both; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.55s ease both; }
+  .hero h1 { animation: fadeUp 0.55s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.55s 0.2s ease both; }
+  .hero-cta-group { animation: fadeUp 0.55s 0.3s ease both; }
+  .hero-right { animation: fadeUp 0.7s 0.15s ease both; }
 </style>
 </head>
 <body>
@@ -642,7 +377,13 @@
     </div>
   </div>
   <div class="hero-right">
-    <img src="therapy.jpg" alt="Person in a therapy session having a conversation" />
+    <div class="hero-img-frame">
+      <img src="therapy.jpg" alt="Person opening up in a therapy session" />
+      <div class="hero-img-badge">
+        <div class="hero-img-badge-title">Real conversations. Real progress.</div>
+        <div class="hero-img-badge-sub">Finding the right fit changes everything.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -676,62 +417,72 @@
   </div>
 </div>
 
-<!-- MVT A — THERAPIST MATCH -->
+<!-- SERVICE A — THERAPIST MATCH -->
 <section class="mvt-a" id="therapist-match">
   <div class="section-inner">
     <span class="section-tag">Service 01 — Therapist Match</span>
     <h2 class="section-title">Stop guessing. Get 3 therapists who actually fit you.</h2>
-    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I'll do the research, ask the right questions, and hand you 3 hand-picked matches with a note on why each one could work for you specifically.</p>
+    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I do the research and hand you 3 hand-picked matches with a note on why each one could work for you specifically.</p>
 
     <div class="mvt-a-grid">
-      <div class="match-steps">
-        <div class="match-step">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <h4>You book a 30-minute intake call</h4>
-            <p>We talk through what you're dealing with, what's been tried, and what matters most: insurance, modality, personality, availability.</p>
-          </div>
-        </div>
-        <div class="match-step">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <h4>I research and vet 3 matches for you</h4>
-            <p>Within 5 business days I send you 3 therapist recommendations, each with a short note on why they could be a good fit for you.</p>
-          </div>
-        </div>
-        <div class="match-step">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <h4>You reach out and book with confidence</h4>
-            <p>In-person or telehealth, insurance or sliding scale, your call. Full refund if I can't find 3 good matches.</p>
-          </div>
+      <div class="service-a-visual">
+        <img src="therapy.jpg" alt="Person in a meaningful therapy conversation" />
+        <div class="service-a-visual-overlay"></div>
+        <div class="service-a-visual-label">
+          <h3>The right therapist changes everything.</h3>
+          <p>Most people quit after 1–2 sessions because the fit was wrong — not because therapy doesn't work.</p>
         </div>
       </div>
 
-      <div class="match-pricing-card">
-        <div class="price-tag">$75</div>
-        <div class="price-desc">One-time payment · Delivered within 5 business days</div>
-        <div class="price-guarantee">✦ Full refund if I can't find 3 good fits</div>
-        <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary" style="width:100%; text-align:center; display:block;">Find My Match →</a>
-        <p style="font-size:0.95rem; color:var(--ink-muted); margin-top:16px; line-height:1.6;">Book your 30-minute intake call above. Matches sent within 5 business days.</p>
+      <div class="service-a-right">
+        <div class="match-steps">
+          <div class="match-step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <h4>Book a free 30-minute intake call</h4>
+              <p>We talk through what you're dealing with, what's been tried, and what matters most: insurance, modality, personality, availability.</p>
+            </div>
+          </div>
+          <div class="match-step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <h4>I research and vet 3 matches for you</h4>
+              <p>Within 5 business days I send you 3 therapist recommendations, each with a short note on why they could be a good fit for you.</p>
+            </div>
+          </div>
+          <div class="match-step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <h4>You reach out and book with confidence</h4>
+              <p>In-person or telehealth, insurance or sliding scale, your call. Full refund if I can't find 3 good matches.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-pill">
+          <div class="price-tag">$75</div>
+          <div class="price-desc">One-time payment · Delivered within 5 business days</div>
+          <div class="price-guarantee">✦ Full refund if I can't find 3 good fits</div>
+          <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary" style="width:100%; text-align:center; display:block;">Find My Match →</a>
+          <p class="pricing-note">Book your 30-minute intake call above. Matches sent within 5 business days.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MVT B — SESSION COMPANION -->
+<!-- SERVICE B — 2-WEEK CHECK-IN -->
 <section class="mvt-b" id="session-companion">
   <div class="section-inner">
     <span class="section-tag">Service 02 — 2-Week Check-In</span>
     <h2 class="section-title">14 days of showing up for yourself. $3, paid once.</h2>
-    <p class="section-sub">A simple daily check-in sent to your phone every evening. You answer 5 quick questions. At the end of 2 weeks, you get a personal progress summary you can actually bring to your next therapy session.</p>
+    <p class="section-sub">A daily check-in sent to your phone every evening. Answer 5 quick questions. At the end of 2 weeks, get a personal progress summary to bring to your next therapy session.</p>
 
-    <div class="companion-grid">
-      <div class="service-features">
+    <div class="mvt-b-grid">
+      <div class="service-b-left">
         <div class="feature-row">
           <div class="feature-icon">📱</div>
           <div class="feature-text">
-            <h4>A daily check-in sent to your phone at 8pm — takes under 2 minutes</h4>
+            <h4>A daily check-in sent to your phone at 8pm — under 2 minutes</h4>
             <p>How you're feeling, what's on your mind, whether you used anything from your last session.</p>
           </div>
         </div>
@@ -739,14 +490,14 @@
           <div class="feature-icon">📈</div>
           <div class="feature-text">
             <h4>Your responses are saved so you can see your own patterns</h4>
-            <p>Mood trends, recurring thoughts, what keeps coming up. All in one place, just for you.</p>
+            <p>Mood trends, recurring thoughts, what keeps coming up — all in one place, just for you.</p>
           </div>
         </div>
         <div class="feature-row">
           <div class="feature-icon">📄</div>
           <div class="feature-text">
             <h4>A personal progress summary sent at Day 7 and Day 14</h4>
-            <p>A short recap of your two weeks: what shifted, what stayed the same, and what's worth bringing to therapy.</p>
+            <p>What shifted, what stayed the same, and what's worth bringing up in your next session.</p>
           </div>
         </div>
         <div class="feature-row">
@@ -758,7 +509,14 @@
         </div>
       </div>
 
-      <div>
+      <div class="service-b-right">
+        <!-- Framed journaling image with caption -->
+        <div class="service-b-img-frame">
+          <img src="hero.jpg" alt="Person writing in a journal, tracking their thoughts between therapy sessions" />
+          <div class="service-b-img-frame-overlay"></div>
+          <div class="service-b-img-caption">"The check-in is for the days between sessions — when things come up and you don't want to forget them."</div>
+        </div>
+
         <div class="companion-pricing">
           <div class="one-time-badge">One-Time Payment</div>
           <div class="price-tag">$3</div>
@@ -795,28 +553,12 @@
   </div>
 </section>
 
-<!-- JOURNALING VISUAL SECTION -->
-<div class="visual-section">
-  <div class="visual-split">
-    <div class="visual-split-img">
-      <img src="hero.jpg" alt="Person journaling and tracking their mental health between therapy sessions" />
-    </div>
-    <div class="visual-split-text">
-      <span class="section-tag">What the 2-Week Check-In looks like</span>
-      <h2>Every night, a 2-minute check-in. Every two weeks, a clear picture of where you are.</h2>
-      <p>The check-in is designed for the time between sessions — when things come up, when you forget what you wanted to say, when you're not sure if what you're feeling is progress or not. You write it down. I compile it. You bring it to therapy.</p>
-      <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-primary">Start for $3 →</a>
-    </div>
-  </div>
-</div>
-
-<!-- FORMS / HOW IT WORKS -->
+<!-- FORMS -->
 <section class="forms-section" id="how-it-works">
   <div class="section-inner">
     <span class="section-tag">The 2-Week Check-In — In Detail</span>
     <h2 class="section-title">Three forms. Zero fluff.</h2>
-    <p class="section-sub">The check-in is built around three focused forms. Each one is short on purpose. The goal is consistency, not perfection.</p>
-
+    <p class="section-sub">Each form is short on purpose. The goal is consistency, not perfection.</p>
     <div class="forms-grid">
       <div class="form-card">
         <div class="form-card-label">Form 01 · One time</div>
@@ -829,11 +571,10 @@
           <li>What would make this 2 weeks worth it for you?</li>
         </ul>
       </div>
-
       <div class="form-card">
         <div class="form-card-label">Form 02 · Every night at 8pm</div>
         <h3>Daily Check-In</h3>
-        <p>A quick pulse check on how you're doing. Takes less than 2 minutes. Show up every day and the pattern tells you something.</p>
+        <p>A quick pulse check on how you're doing. Takes less than 2 minutes.</p>
         <ul class="form-questions">
           <li>How are you feeling today? (1–10 scale)</li>
           <li>What's been on your mind the most?</li>
@@ -842,11 +583,10 @@
           <li>What do you need most right now?</li>
         </ul>
       </div>
-
       <div class="form-card">
         <div class="form-card-label">Form 03 · Day 7 and Day 14</div>
         <h3>Weekly Reflection</h3>
-        <p>A chance to zoom out and look at the bigger picture. Your answers anchor your progress summary. Takes about 3 minutes.</p>
+        <p>Zoom out and look at the bigger picture. Your answers anchor your progress summary. Takes about 3 minutes.</p>
         <ul class="form-questions">
           <li>Compared to last week, how are you feeling?</li>
           <li>One thing you noticed about yourself this week</li>
@@ -862,7 +602,7 @@
 <section class="about-section" id="about">
   <div class="section-inner">
     <div class="about-grid">
-      <div class="about-img-wrap">
+      <div class="about-img-frame">
         <img src="photo.png" alt="Alina Abraham" />
       </div>
       <div>
