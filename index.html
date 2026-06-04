@@ -13,24 +13,22 @@
     --cream: #FAF8F4;
     --ink: #1C1C1C;
     --ink-soft: #4A4A4A;
-    --ink-muted: #8A8A8A;
-    --gold: #C4973A;
+    --ink-muted: #6A6A6A;
     --border: #E0E8E1;
-    --white: #FFFFFF;
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
   html { scroll-behavior: smooth; }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
     line-height: 1.6;
     overflow-x: hidden;
+    font-size: 17px;
   }
- 
+
   /* NAV */
   nav {
     position: fixed;
@@ -40,238 +38,230 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(250, 248, 244, 0.92);
+    background: rgba(250,248,244,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
- 
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--ink);
     text-decoration: none;
-    letter-spacing: 0.02em;
   }
- 
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
- 
+  .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--ink-soft);
     text-decoration: none;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
     font-weight: 500;
     transition: color 0.2s;
   }
- 
   .nav-links a:hover { color: var(--sage); }
- 
+
   /* HERO */
   .hero {
     min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    padding-top: 80px;
+    background: var(--ink);
+  }
+
+  .hero-left {
     display: flex;
-    align-items: center;
-    padding: 120px 40px 80px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-right {
     position: relative;
     overflow: hidden;
   }
- 
-  .hero::before {
+
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    opacity: 0.85;
+  }
+
+  .hero-right::after {
     content: '';
     position: absolute;
-    top: -100px; right: -100px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(122,158,126,0.12) 0%, transparent 70%);
-    pointer-events: none;
+    inset: 0;
+    background: linear-gradient(to right, rgba(28,28,28,0.5) 0%, transparent 40%);
   }
- 
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -50px; left: -50px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(196,151,58,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
- 
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
- 
+
   .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--sage);
+    color: var(--sage-light);
     font-weight: 500;
-    margin-bottom: 20px;
-  }
- 
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 4vw, 3.6rem);
-    line-height: 1.15;
-    color: var(--ink);
     margin-bottom: 24px;
   }
- 
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
   .hero h1 em {
     font-style: italic;
-    color: var(--sage);
+    color: var(--sage-light);
   }
- 
+
   .hero-sub {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
     line-height: 1.75;
     margin-bottom: 40px;
     font-weight: 300;
   }
- 
-  .hero-cta-group {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
- 
+
+  .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* BUTTONS */
   .btn-primary {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 16px 36px;
     background: var(--sage);
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.03em;
     border-radius: 4px;
-    transition: all 0.25s;
     border: 2px solid var(--sage);
+    transition: all 0.25s;
   }
- 
-  .btn-primary:hover {
-    background: transparent;
-    color: var(--sage);
-  }
- 
+  .btn-primary:hover { background: transparent; color: var(--sage-light); border-color: var(--sage-light); }
+
   .btn-secondary {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 16px 36px;
     background: transparent;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.8);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
-    letter-spacing: 0.03em;
     border-radius: 4px;
-    border: 2px solid var(--border);
+    border: 2px solid rgba(255,255,255,0.3);
     transition: all 0.25s;
   }
- 
-  .btn-secondary:hover {
-    border-color: var(--ink-soft);
-    color: var(--ink);
-  }
- 
-  .hero-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
- 
-  .stat-card {
+  .btn-secondary:hover { border-color: white; color: white; }
+
+  .btn-light {
+    display: inline-block;
+    padding: 16px 36px;
     background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    transition: transform 0.2s;
-  }
- 
-  .stat-card:hover { transform: translateY(-2px); }
- 
-  .stat-icon {
-    width: 40px; height: 40px;
-    background: var(--sage-pale);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
- 
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
     color: var(--ink);
-    line-height: 1;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 2px solid white;
+    transition: all 0.25s;
   }
- 
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-    margin-top: 4px;
+  .btn-light:hover { background: transparent; color: white; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: #111;
+    padding: 48px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
- 
-  /* SECTION SHARED */
-  section {
-    padding: 100px 40px;
-  }
- 
-  .section-inner {
+  .stats-inner {
     max-width: 1100px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
   }
- 
+  .stat-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 28px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+  }
+  .stat-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+  .stat-source {
+    font-size: 0.85rem;
+    color: var(--sage-light);
+    margin-top: 8px;
+  }
+  .stat-source a {
+    color: var(--sage-light);
+    text-decoration: underline;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
   .section-tag {
     display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--sage);
     font-weight: 500;
     border: 1px solid var(--sage-light);
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 100px;
     margin-bottom: 20px;
   }
- 
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-size: clamp(2rem, 3vw, 2.8rem);
     line-height: 1.2;
     color: var(--ink);
     margin-bottom: 16px;
   }
- 
+
   .section-sub {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--ink-soft);
     line-height: 1.75;
     font-weight: 300;
-    max-width: 560px;
+    max-width: 580px;
   }
- 
-  /* MVT A — THERAPIST MATCH */
+
+  /* MVT A */
   .mvt-a {
     background: white;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
- 
+
   .mvt-a-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -279,91 +269,53 @@
     align-items: start;
     margin-top: 60px;
   }
- 
-  .match-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
- 
-  .match-step {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
- 
+
+  .match-steps { display: flex; flex-direction: column; gap: 28px; }
+
+  .match-step { display: flex; gap: 20px; align-items: flex-start; }
+
   .step-num {
-    width: 32px; height: 32px;
+    width: 36px; height: 36px;
     background: var(--sage);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     flex-shrink: 0;
     margin-top: 2px;
   }
- 
-  .step-text h4 {
-    font-weight: 500;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-  }
- 
-  .step-text p {
-    font-size: 0.875rem;
-    color: var(--ink-soft);
-    line-height: 1.6;
-    font-weight: 300;
-  }
- 
+
+  .step-text h4 { font-weight: 500; font-size: 1rem; margin-bottom: 6px; }
+  .step-text p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.65; font-weight: 300; }
+
   .match-pricing-card {
     background: var(--sage-pale);
     border: 1px solid var(--sage-light);
     border-radius: 16px;
-    padding: 40px;
+    padding: 44px;
     text-align: center;
   }
- 
+
   .price-tag {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-size: 4rem;
     color: var(--ink);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
- 
-  .price-desc {
-    font-size: 0.875rem;
-    color: var(--ink-soft);
-    margin-bottom: 8px;
-    font-weight: 300;
-  }
- 
-  .price-guarantee {
-    font-size: 0.8rem;
-    color: var(--sage);
-    font-weight: 500;
-    margin-bottom: 32px;
-  }
- 
-  /* MVT B — SESSION COMPANION */
-  .mvt-b {
-    background: var(--ink);
-    color: white;
-  }
- 
-  .mvt-b .section-tag {
-    color: var(--sage-light);
-    border-color: rgba(181,204,183,0.3);
-  }
- 
+
+  .price-desc { font-size: 1rem; color: var(--ink-soft); margin-bottom: 10px; font-weight: 300; }
+  .price-guarantee { font-size: 0.95rem; color: var(--sage); font-weight: 500; margin-bottom: 32px; }
+
+  /* MVT B */
+  .mvt-b { background: var(--ink); color: white; }
+  .mvt-b .section-tag { color: var(--sage-light); border-color: rgba(181,204,183,0.3); }
   .mvt-b .section-title { color: white; }
- 
   .mvt-b .section-sub { color: rgba(255,255,255,0.6); }
- 
+
   .companion-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -371,136 +323,149 @@
     align-items: start;
     margin-top: 60px;
   }
- 
+
   .companion-pricing {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
-    padding: 40px;
+    padding: 44px;
     text-align: center;
   }
- 
-  .companion-pricing .price-tag {
+
+  .companion-pricing .price-tag { color: var(--sage-light); }
+  .companion-pricing .price-desc { color: rgba(255,255,255,0.55); }
+  .companion-pricing .price-guarantee { color: var(--sage-light); }
+
+  .one-time-badge {
+    display: inline-block;
+    background: rgba(181,204,183,0.2);
+    border: 1px solid rgba(181,204,183,0.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--sage-light);
+    margin-bottom: 16px;
   }
- 
-  .companion-pricing .price-desc {
-    color: rgba(255,255,255,0.5);
+
+  .companion-note {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 16px;
+    line-height: 1.6;
   }
- 
-  .companion-pricing .price-guarantee {
-    color: var(--sage-light);
-  }
- 
-  .service-features {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
- 
+
+  .service-features { display: flex; flex-direction: column; gap: 20px; }
+
   .feature-row {
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    padding: 20px;
+    padding: 22px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 10px;
   }
- 
-  .feature-icon {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
- 
-  .feature-text h4 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: white;
-    margin-bottom: 4px;
-  }
- 
-  .feature-text p {
-    font-size: 0.825rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-    font-weight: 300;
-  }
- 
+
+  .feature-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .feature-text h4 { font-size: 0.95rem; font-weight: 500; color: white; margin-bottom: 5px; }
+  .feature-text p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+
   .timeline-strip {
     display: flex;
-    gap: 0;
     margin-top: 48px;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
   }
- 
+
   .timeline-item {
     flex: 1;
-    padding: 20px 16px;
+    padding: 18px 12px;
     text-align: center;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
- 
   .timeline-item:last-child { border-right: none; }
- 
+
   .timeline-day {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--sage-light);
     margin-bottom: 6px;
   }
- 
-  .timeline-label {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.4;
-  }
- 
-  .btn-light {
-    display: inline-block;
-    padding: 14px 32px;
-    background: white;
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    border-radius: 4px;
-    transition: all 0.25s;
-    border: 2px solid white;
-    margin-top: 32px;
-  }
- 
-  .btn-light:hover {
-    background: transparent;
-    color: white;
-  }
- 
-  /* HOW IT WORKS FORMS SECTION */
-  .forms-section {
+
+  .timeline-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+  /* JOURNALING VISUAL SECTION */
+  .visual-section {
     background: var(--cream);
+    padding: 0;
+    border-top: 1px solid var(--border);
   }
- 
+
+  .visual-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+
+  .visual-split-img {
+    overflow: hidden;
+  }
+
+  .visual-split-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  .visual-split-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 72px;
+    background: white;
+  }
+
+  .visual-split-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .visual-split-text p {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+
+  /* FORMS */
+  .forms-section { background: var(--cream); }
+
   .forms-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 56px;
   }
- 
+
   .form-card {
     background: white;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 32px;
+    padding: 36px;
     position: relative;
     overflow: hidden;
   }
- 
+
   .form-card::before {
     content: '';
     position: absolute;
@@ -508,146 +473,144 @@
     height: 3px;
     background: var(--sage);
   }
- 
+
   .form-card-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--sage);
     font-weight: 500;
     margin-bottom: 12px;
   }
- 
+
   .form-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 12px;
   }
- 
-  .form-card p {
-    font-size: 0.85rem;
+
+  .form-card > p {
+    font-size: 0.95rem;
     color: var(--ink-soft);
     line-height: 1.65;
     font-weight: 300;
     margin-bottom: 20px;
   }
- 
-  .form-questions {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
- 
+
+  .form-questions { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
   .form-questions li {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--ink-muted);
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: flex-start;
     line-height: 1.5;
   }
- 
-  .form-questions li::before {
-    content: '→';
-    color: var(--sage-light);
-    flex-shrink: 0;
-  }
- 
+
+  .form-questions li::before { content: '→'; color: var(--sage-light); flex-shrink: 0; }
+
   /* ABOUT */
-  .about-section {
-    background: white;
-    border-top: 1px solid var(--border);
-  }
- 
+  .about-section { background: white; border-top: 1px solid var(--border); }
+
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 80px;
     align-items: center;
   }
- 
-  .about-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 8px;
+
+  .about-img-wrap {
+    overflow: hidden;
+    border-radius: 12px;
   }
- 
-  .about-title {
-    font-size: 0.85rem;
-    color: var(--sage);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
- 
-  .about-body {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    line-height: 1.8;
-    font-weight: 300;
-  }
- 
-  .about-placeholder {
+
+  .about-img-wrap img {
     width: 100%;
     aspect-ratio: 4/5;
-    background: var(--sage-pale);
+    object-fit: cover;
+    display: block;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
   }
- 
-  .about-placeholder-text {
-    font-size: 0.8rem;
+
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+  }
+
+  .about-title {
+    font-size: 0.95rem;
     color: var(--sage);
-    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 28px;
   }
- 
+
+  .about-body {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: #f5f0eb;
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+  }
+
+  .disclaimer p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
   /* FOOTER */
   footer {
     padding: 48px 40px;
     text-align: center;
     border-top: 1px solid var(--border);
   }
- 
+
   .footer-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--ink);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
- 
-  .footer-sub {
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-  }
- 
+
+  .footer-sub { font-size: 0.95rem; color: var(--ink-muted); }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    section { padding: 70px 20px; }
-    .hero { padding: 100px 20px 60px; }
-    .hero-inner,
+    section { padding: 64px 20px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 100px 24px 60px; }
+    .hero-right { height: 300px; }
+    .stats-inner,
     .mvt-a-grid,
     .companion-grid,
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid,
+    .visual-split { grid-template-columns: 1fr; }
     .forms-grid { grid-template-columns: 1fr; }
-    .hero-visual { display: none; }
     .timeline-strip { flex-direction: column; }
     .timeline-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .timeline-item:last-child { border-bottom: none; }
+    .visual-split-text { padding: 48px 24px; }
   }
- 
-  /* ANIMATIONS */
+
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
- 
   .hero-eyebrow { animation: fadeUp 0.6s ease both; }
   .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
   .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
@@ -655,7 +618,7 @@
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Mental Meter</a>
@@ -666,61 +629,66 @@
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
- 
+
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div>
-      <p class="hero-eyebrow">Mental Health · Made Personal</p>
-      <h1>You deserve support that actually <em>fits</em> where you are.</h1>
-      <p class="hero-sub">Whether you're still figuring out where to start or already in therapy and wanting more from it, you don't have to navigate this alone. I built two small, affordable services to meet you exactly where you are.</p>
-      <div class="hero-cta-group">
-        <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary">Find My Match — $75</a>
-        <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-secondary">2-Week Check-In — $3</a>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Mental Health · Where You're Heard</p>
+    <h1>You're in therapy but nothing feels <em>different</em> between sessions. You've tried multiple therapists and still haven't found the right one.</h1>
+    <p class="hero-sub">Whether you're still looking for the right therapist or already in therapy and wanting more from it — you don't have to navigate this alone. Two small, affordable services built to meet you exactly where you are.</p>
+    <div class="hero-cta-group">
+      <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary">Find My Therapist Match — $75</a>
+      <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-secondary">Start 2-Week Check-In — $3</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="therapy.jpg" alt="Person in a therapy session having a conversation" />
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-card">
+      <div class="stat-icon">🔄</div>
+      <div>
+        <div class="stat-number">40–60%</div>
+        <div class="stat-label">of therapy clients drop out before completing treatment</div>
+        <div class="stat-source">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="stat-card">
-        <div class="stat-icon">🔄</div>
-        <div>
-          <div class="stat-number">40–60%</div>
-          <div class="stat-label">of therapy clients drop out before completing treatment</div>
-          <div style="font-size:0.7rem; color:var(--sage); margin-top:6px;">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank" style="color:var(--sage); text-decoration:underline;">PMC3708593</a></div>
-        </div>
+    <div class="stat-card">
+      <div class="stat-icon">🕐</div>
+      <div>
+        <div class="stat-number">1–2</div>
+        <div class="stat-label">sessions is all most people attend before dropping out entirely</div>
+        <div class="stat-source">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">🕐</div>
-        <div>
-          <div class="stat-number">1–2</div>
-          <div class="stat-label">sessions is all most people attend before dropping out entirely</div>
-          <div style="font-size:0.7rem; color:var(--sage); margin-top:6px;">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank" style="color:var(--sage); text-decoration:underline;">PMC3708593</a></div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">📋</div>
-        <div>
-          <div class="stat-number">#1</div>
-          <div class="stat-label">reason for dropout: poor therapist fit and not feeling an immediate connection</div>
-          <div style="font-size:0.7rem; color:var(--sage); margin-top:6px;">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank" style="color:var(--sage); text-decoration:underline;">PMC3708593</a></div>
-        </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <div>
+        <div class="stat-number">#1</div>
+        <div class="stat-label">reason for dropout: poor therapist fit and not feeling an immediate connection</div>
+        <div class="stat-source">Swift & Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div>
       </div>
     </div>
   </div>
-</section>
- 
+</div>
+
 <!-- MVT A — THERAPIST MATCH -->
 <section class="mvt-a" id="therapist-match">
   <div class="section-inner">
     <span class="section-tag">Service 01 — Therapist Match</span>
-    <h2 class="section-title">Stop guessing. Get 3 therapists<br>who actually fit you.</h2>
-    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I'll do the research, ask the right questions, and hand you 3 hand-picked matches with a brief on why each one could work for you.</p>
- 
+    <h2 class="section-title">Stop guessing. Get 3 therapists who actually fit you.</h2>
+    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I'll do the research, ask the right questions, and hand you 3 hand-picked matches with a note on why each one could work for you specifically.</p>
+
     <div class="mvt-a-grid">
       <div class="match-steps">
         <div class="match-step">
           <div class="step-num">1</div>
           <div class="step-text">
-            <h4>You pay & book a 30-minute intake call</h4>
+            <h4>You book a 30-minute intake call</h4>
             <p>We talk through what you're dealing with, what's been tried, and what matters most: insurance, modality, personality, availability.</p>
           </div>
         </div>
@@ -728,80 +696,78 @@
           <div class="step-num">2</div>
           <div class="step-text">
             <h4>I research and vet 3 matches for you</h4>
-            <p>Within 5 business days I send you 3 therapist recommendations, each with a short note on why they could be a good fit for you specifically.</p>
+            <p>Within 5 business days I send you 3 therapist recommendations, each with a short note on why they could be a good fit for you.</p>
           </div>
         </div>
         <div class="match-step">
           <div class="step-num">3</div>
           <div class="step-text">
-            <h4>You reach out & book with confidence</h4>
+            <h4>You reach out and book with confidence</h4>
             <p>In-person or telehealth, insurance or sliding scale, your call. Full refund if I can't find 3 good matches.</p>
           </div>
         </div>
       </div>
- 
+
       <div class="match-pricing-card">
         <div class="price-tag">$75</div>
-        <div class="price-desc">One-time · Delivered within 5 business days</div>
+        <div class="price-desc">One-time payment · Delivered within 5 business days</div>
         <div class="price-guarantee">✦ Full refund if I can't find 3 good fits</div>
         <a href="https://calendly.com/alinaabraham05/30min" class="btn-primary" style="width:100%; text-align:center; display:block;">Find My Match →</a>
-        <p style="font-size:0.75rem; color:var(--ink-muted); margin-top:16px; line-height:1.5;">Book your 30-minute intake call. Matches sent within 5 business days.</p>
+        <p style="font-size:0.95rem; color:var(--ink-muted); margin-top:16px; line-height:1.6;">Book your 30-minute intake call above. Matches sent within 5 business days.</p>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- MVT B — SESSION COMPANION -->
 <section class="mvt-b" id="session-companion">
   <div class="section-inner">
     <span class="section-tag">Service 02 — 2-Week Check-In</span>
-    <h2 class="section-title">14 days of showing up<br>for yourself — for $3.</h2>
-    <p class="section-sub">A simple daily check-in sent to your phone every evening. You answer 5 quick questions. At the end of 2 weeks, you get a progress summary you can actually bring to therapy.</p>
- 
+    <h2 class="section-title">14 days of showing up for yourself. $3, paid once.</h2>
+    <p class="section-sub">A simple daily check-in sent to your phone every evening. You answer 5 quick questions. At the end of 2 weeks, you get a personal progress summary you can actually bring to your next therapy session.</p>
+
     <div class="companion-grid">
-      <div>
-        <div class="service-features">
-          <div class="feature-row">
-            <div class="feature-icon">📱</div>
-            <div class="feature-text">
-              <h4>Daily 8pm check-in — takes under 2 minutes</h4>
-              <p>A short form sent to your phone each night. How you're feeling, what's on your mind, whether you used anything from your last session.</p>
-            </div>
+      <div class="service-features">
+        <div class="feature-row">
+          <div class="feature-icon">📱</div>
+          <div class="feature-text">
+            <h4>A daily check-in sent to your phone at 8pm — takes under 2 minutes</h4>
+            <p>How you're feeling, what's on your mind, whether you used anything from your last session.</p>
           </div>
-          <div class="feature-row">
-            <div class="feature-icon">📈</div>
-            <div class="feature-text">
-              <h4>Your progress, tracked automatically</h4>
-              <p>Every response is saved. You can see your mood trend, your patterns, and what you keep coming back to, all in one place.</p>
-            </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">📈</div>
+          <div class="feature-text">
+            <h4>Your responses are saved so you can see your own patterns</h4>
+            <p>Mood trends, recurring thoughts, what keeps coming up. All in one place, just for you.</p>
           </div>
-          <div class="feature-row">
-            <div class="feature-icon">📄</div>
-            <div class="feature-text">
-              <h4>A progress summary at day 7 and day 14</h4>
-              <p>A short, personal recap of your two weeks: what shifted, what stayed the same, and what might be worth bringing up in your next session.</p>
-            </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">📄</div>
+          <div class="feature-text">
+            <h4>A personal progress summary sent at Day 7 and Day 14</h4>
+            <p>A short recap of your two weeks: what shifted, what stayed the same, and what's worth bringing to therapy.</p>
           </div>
-          <div class="feature-row">
-            <div class="feature-icon">🔒</div>
-            <div class="feature-text">
-              <h4>Just between us</h4>
-              <p>Nothing is shared with your therapist unless you choose to share it yourself. This is for you first.</p>
-            </div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-text">
+            <h4>Nothing shared with your therapist unless you choose to</h4>
+            <p>This is for you first. Share the summary if and when it feels right.</p>
           </div>
         </div>
       </div>
- 
+
       <div>
         <div class="companion-pricing">
-          <div style="display:inline-block; background:rgba(181,204,183,0.2); border:1px solid rgba(181,204,183,0.4); border-radius:100px; padding:4px 14px; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage-light); margin-bottom:16px;">One-Time Payment</div>
+          <div class="one-time-badge">One-Time Payment</div>
           <div class="price-tag">$3</div>
           <div class="price-desc">Pay once. Get the full 14-day service. No recurring charges, ever.</div>
-          <div class="price-guarantee">✦ Progress summary sent at day 7 & day 14</div>
+          <div class="price-guarantee">✦ Progress summary sent at Day 7 and Day 14</div>
           <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-light" style="width:100%; text-align:center; display:block;">Start My 2 Weeks →</a>
-          <p style="font-size:0.75rem; color:rgba(255,255,255,0.35); margin-top:16px; line-height:1.5;">After payment, you'll get a quick form asking for your name and phone number. That's how I send your nightly check-in link. Your first one arrives at 8pm.</p>
+          <p class="companion-note">After payment, you'll fill out a short form with your name and phone number. That's how I send your nightly check-in link. Your first one arrives at 8pm.</p>
         </div>
- 
+
         <div class="timeline-strip">
           <div class="timeline-item">
             <div class="timeline-day">Day 1</div>
@@ -828,14 +794,29 @@
     </div>
   </div>
 </section>
- 
+
+<!-- JOURNALING VISUAL SECTION -->
+<div class="visual-section">
+  <div class="visual-split">
+    <div class="visual-split-img">
+      <img src="hero.jpg" alt="Person journaling and tracking their mental health between therapy sessions" />
+    </div>
+    <div class="visual-split-text">
+      <span class="section-tag">What the 2-Week Check-In looks like</span>
+      <h2>Every night, a 2-minute check-in. Every two weeks, a clear picture of where you are.</h2>
+      <p>The check-in is designed for the time between sessions — when things come up, when you forget what you wanted to say, when you're not sure if what you're feeling is progress or not. You write it down. I compile it. You bring it to therapy.</p>
+      <a href="https://buy.stripe.com/fZu7sLfkHap91U6eRX9IQ03" class="btn-primary">Start for $3 →</a>
+    </div>
+  </div>
+</div>
+
 <!-- FORMS / HOW IT WORKS -->
 <section class="forms-section" id="how-it-works">
   <div class="section-inner">
     <span class="section-tag">The 2-Week Check-In — In Detail</span>
     <h2 class="section-title">Three forms. Zero fluff.</h2>
     <p class="section-sub">The check-in is built around three focused forms. Each one is short on purpose. The goal is consistency, not perfection.</p>
- 
+
     <div class="forms-grid">
       <div class="form-card">
         <div class="form-card-label">Form 01 · One time</div>
@@ -848,7 +829,7 @@
           <li>What would make this 2 weeks worth it for you?</li>
         </ul>
       </div>
- 
+
       <div class="form-card">
         <div class="form-card-label">Form 02 · Every night at 8pm</div>
         <h3>Daily Check-In</h3>
@@ -861,9 +842,9 @@
           <li>What do you need most right now?</li>
         </ul>
       </div>
- 
+
       <div class="form-card">
-        <div class="form-card-label">Form 03 · Day 7 & Day 14</div>
+        <div class="form-card-label">Form 03 · Day 7 and Day 14</div>
         <h3>Weekly Reflection</h3>
         <p>A chance to zoom out and look at the bigger picture. Your answers anchor your progress summary. Takes about 3 minutes.</p>
         <ul class="form-questions">
@@ -876,13 +857,13 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="section-inner">
     <div class="about-grid">
-      <div class="about-placeholder" style="padding:0; overflow:hidden; background:none; border:none;">
-        <img src="photo.png" alt="Alina Abraham" style="width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;" />
+      <div class="about-img-wrap">
+        <img src="photo.png" alt="Alina Abraham" />
       </div>
       <div>
         <span class="section-tag">About</span>
@@ -899,19 +880,17 @@
     </div>
   </div>
 </section>
- 
+
 <!-- DISCLAIMER -->
-<div style="background:#f5f0eb; border-top:1px solid var(--border); padding:24px 40px; text-align:center;">
-  <p style="font-size:0.75rem; color:var(--ink-muted); max-width:700px; margin:0 auto; line-height:1.7;">
-    <strong style="color:var(--ink-soft);">Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. The services offered on this site are not a substitute for therapy, counseling, or any form of clinical treatment. If you are in crisis or experiencing a mental health emergency, please call or text <strong style="color:var(--sage)">988</strong> (Suicide & Crisis Lifeline) or contact your nearest emergency services immediately.
-  </p>
+<div class="disclaimer">
+  <p><strong>Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. The services offered on this site are not a substitute for therapy, counseling, or any form of clinical treatment. If you are in crisis or experiencing a mental health emergency, please call or text <strong>988</strong> (Suicide & Crisis Lifeline) or contact your nearest emergency services immediately.</p>
 </div>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Mental Meter</div>
   <div class="footer-sub">Built by Alina Abraham · Athens, GA · Questions? Reach out at <span style="color:var(--sage)">Kaduvamma@gmail.com</span></div>
 </footer>
- 
+
 </body>
 </html>
