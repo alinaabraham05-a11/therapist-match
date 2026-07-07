@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearapy — Daily Check-In</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3355NS7R4S"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3355NS7R4S');gtag('event','variant_view',{variant:'v4'});function trackClick(l){gtag('event','cta_click',{variant:'v4',cta:l});}</script>
+<style>
+  /* V4 — CHECK-IN — PROGRESS */
+  /* Dark hero, journaling image right, feature rows below */
+  .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:80px; background:#1a1a1a; }
+  .hero-left { display:flex; flex-direction:column; justify-content:center; padding:72px 56px 72px 64px; animation:fadeUp .6s ease both; }
+  .hero-eyebrow { font-size:0.85rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--sage-light); font-weight:500; margin-bottom:24px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.5vw,3.4rem); line-height:1.15; color:#fff; margin-bottom:20px; }
+  .hero h1 em { font-style:italic; color:var(--sage-light); }
+  .hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.6); line-height:1.7; margin-bottom:36px; font-weight:300; max-width:480px; }
+  .hero-right { display:flex; align-items:center; justify-content:center; padding:48px 48px 48px 24px; animation:fadeUp .7s .15s ease both; }
+  .hero-img-frame { width:100%; max-height:680px; border-radius:20px; overflow:hidden; position:relative; box-shadow:0 24px 64px rgba(0,0,0,0.5); aspect-ratio:4/5; }
+  .hero-img-frame img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+  .hero-img-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(20,20,20,0.65) 0%, transparent 50%); }
+  .hero-img-caption { position:absolute; bottom:24px; left:24px; right:24px; color:white; font-style:italic; font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.5; }
+
+  .checkin-section { background:var(--ink); color:white; }
+  .checkin-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-top:52px; }
+  .features-col { display:flex; flex-direction:column; gap:16px; }
+
+  @media(max-width:800px){ .hero{grid-template-columns:1fr;} .hero-left{padding:100px 24px 40px;} .hero-right{padding:0 24px 48px;} .checkin-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Clearapy</a>
+  <ul class="nav-links"><li><a href="#service">How It Works</a></li><li><a href="#about">About</a></li></ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Mental Health · Where You're Heard</p>
+    <h1>Want a free daily check-in between therapy sessions? <em>Sign up below.</em></h1>
+    <p class="hero-sub">2 minutes a night. No payment, no card. Just drop your info and your first check-in arrives tonight.</p>
+    <div class="lead-form-wrap lead-form-wrap-dark">
+      <form action="https://formspree.io/f/mykaanel" method="POST" class="lead-form" onsubmit="trackClick('checkin_hero_v4')">
+        <input type="hidden" name="_subject" value="New Check-In Signup — V4" />
+        <input type="hidden" name="service" value="2-Week Check-In" />
+        <div class="lead-form-row"><input type="text" name="name" placeholder="Your name" required class="lead-input" /></div>
+        <div class="lead-form-row"><input type="email" name="email" placeholder="Your email" required class="lead-input" /></div>
+        <div class="lead-form-row"><input type="tel" name="phone" placeholder="Your phone number" required class="lead-input" /></div>
+        <button type="submit" class="lead-submit-btn">Start My Free Check-In</button>
+      </form>
+      <p class="lead-form-note">Your first check-in arrives tonight at 8pm.</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-frame">
+      <img src="hero.jpg" alt="Person journaling between therapy sessions" />
+      <div class="hero-img-overlay"></div>
+      <div class="hero-img-caption">"The check-in is for the days between sessions — when things come up and you don't want to forget them."</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-card"><div class="stat-icon">🔄</div><div><div class="stat-number">40–60%</div><div class="stat-label">of therapy clients drop out before completing treatment</div><div class="stat-source">Swift &amp; Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div></div></div>
+    <div class="stat-card"><div class="stat-icon">🕐</div><div><div class="stat-number">1–2</div><div class="stat-label">sessions is all most people attend before dropping out</div><div class="stat-source">Swift &amp; Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div></div></div>
+    <div class="stat-card"><div class="stat-icon">📋</div><div><div class="stat-number">#1</div><div class="stat-label">reason for dropout: poor therapist fit and no immediate connection</div><div class="stat-source">Swift &amp; Greenberg, 2012 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3708593/" target="_blank">PMC3708593</a></div></div></div>
+  </div>
+</div>
+
+<!-- SERVICE -->
+<section class="checkin-section" id="service">
+  <div class="section-inner">
+    <span class="section-tag" style="color:var(--sage-light);border-color:rgba(181,204,183,0.3);">2-Week Check-In — Free</span>
+    <h2 class="section-title" style="color:white;">14 days of showing up for yourself. Completely free.</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.6);">A daily check-in sent to your phone every evening. Answer 5 quick questions. At the end of 2 weeks, get a progress summary to bring to your next therapy session.</p>
+    <div class="checkin-grid">
+      <div class="features-col">
+        <div class="feature-row feature-row-dark"><div class="feature-icon">📱</div><div class="feature-text feature-text-dark"><h4>A daily check-in at 8pm — under 2 minutes</h4><p>How you're feeling, what's on your mind, whether you used anything from your last session.</p></div></div>
+        <div class="feature-row feature-row-dark"><div class="feature-icon">📈</div><div class="feature-text feature-text-dark"><h4>Your responses saved so you can see patterns</h4><p>Mood trends, recurring thoughts, what keeps coming up — all in one place, just for you.</p></div></div>
+        <div class="feature-row feature-row-dark"><div class="feature-icon">📄</div><div class="feature-text feature-text-dark"><h4>Progress summary at Day 7 and Day 14</h4><p>What shifted, what stayed the same, and what's worth bringing to your next session.</p></div></div>
+        <div class="feature-row feature-row-dark"><div class="feature-icon">🔒</div><div class="feature-text feature-text-dark"><h4>Nothing shared unless you choose to</h4><p>This is for you first. Share the summary if and when it feels right.</p></div></div>
+      </div>
+      <div>
+        <div class="pricing-pill pricing-pill-dark">
+          <div class="one-time-badge">100% Free</div>
+          <div class="price-tag price-tag-dark">$0</div>
+          <div class="price-desc price-desc-dark">No payment, no card required. The full 14-day service, free.</div>
+          <div class="price-guarantee price-guarantee-dark">✦ Progress summary at Day 7 and Day 14</div>
+          <div class="lead-form-wrap lead-form-wrap-dark">
+            <form action="https://formspree.io/f/mykaanel" method="POST" class="lead-form" onsubmit="trackClick('checkin_section_v4')">
+              <input type="hidden" name="_subject" value="New Check-In Signup — V4" />
+              <input type="hidden" name="service" value="2-Week Check-In" />
+              <div class="lead-form-row"><input type="text" name="name" placeholder="Your name" required class="lead-input" /></div>
+              <div class="lead-form-row"><input type="email" name="email" placeholder="Your email" required class="lead-input" /></div>
+              <div class="lead-form-row"><input type="tel" name="phone" placeholder="Your phone number" required class="lead-input" /></div>
+              <button type="submit" class="lead-submit-btn">Start My Free Check-In</button>
+            </form>
+            <p class="lead-form-note">Your first check-in arrives tonight at 8pm.</p>
+          </div>
+        </div>
+        <div class="timeline-strip" style="margin-top:24px;">
+          <div class="timeline-item"><div class="timeline-day">Day 1</div><div class="timeline-label">Intake + first check-in</div></div>
+          <div class="timeline-item"><div class="timeline-day">Days 2–6</div><div class="timeline-label">Daily 8pm check-ins</div></div>
+          <div class="timeline-item"><div class="timeline-day">Day 7</div><div class="timeline-label">Week 1 summary</div></div>
+          <div class="timeline-item"><div class="timeline-day">Days 8–13</div><div class="timeline-label">Daily 8pm check-ins</div></div>
+          <div class="timeline-item"><div class="timeline-day">Day 14</div><div class="timeline-label">Final summary</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background:white; border-top:1px solid var(--border);" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-frame"><img src="photo.png" alt="Alina Abraham" /></div>
+      <div>
+        <span class="section-tag">About</span>
+        <div class="about-name">Alina Abraham</div>
+        <div class="about-title">UGA Student &nbsp;·&nbsp; Mental Health Advocate &nbsp;·&nbsp; Crisis Textline Volunteer</div>
+        <p class="about-body">I've spent the last year talking to therapists, clinics, and people who quit therapy. Not because therapy failed them, but because the system made it too hard to stick with. The weeks between appointments, the sessions that felt like starting over — there's a gap there that nobody is filling.<br><br>This check-in is my attempt to fill it. Just 2 minutes a night, and something to hold onto between sessions.<br><br>I'm a UGA student testing whether this idea is real. If it helps you, it helps me know whether to keep building.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer"><p><strong>Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. These services are not a substitute for therapy or clinical treatment. If you are in crisis, please call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline).</p></div>
+<footer><div class="footer-logo">Clearapy</div><div class="footer-sub">Built by Alina Abraham · Athens, GA · <span style="color:var(--sage)">Kaduvamma@gmail.com</span></div></footer>
+</body>
+</html>
