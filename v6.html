@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearapy — Find Your Therapist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3355NS7R4S"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3355NS7R4S');gtag('event','variant_view',{variant:'v6'});function trackClick(l){gtag('event','cta_click',{variant:'v6',cta:l});}</script>
+<style>
+  .hero { min-height:100vh; position:relative; display:flex; align-items:flex-end; padding-top:80px; overflow:hidden; }
+  .hero-bg { position:absolute; inset:0; background-image:url('therapy.jpg'); background-size:cover; background-position:center 20%; }
+  .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.93) 30%, rgba(10,10,10,0.45) 100%); }
+  .hero-content { position:relative; z-index:2; max-width:580px; padding:72px 64px; animation:fadeUp .6s ease both; }
+  .hero-eyebrow { font-size:0.85rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--sage-light); font-weight:500; margin-bottom:20px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.5vw,3.2rem); line-height:1.18; color:#fff; margin-bottom:16px; }
+  .hero h1 em { font-style:italic; color:var(--sage-light); }
+  .hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:32px; font-weight:300; }
+  .lead-form-wrap-hero { max-width:420px; }
+  .lead-input { background:rgba(255,255,255,0.1) !important; border-color:rgba(255,255,255,0.2) !important; color:white !important; }
+  .lead-input::placeholder { color:rgba(255,255,255,0.45) !important; }
+  .lead-submit-btn { background:var(--sage) !important; color:white !important; border-color:var(--sage) !important; }
+  .lead-submit-btn:hover { background:transparent !important; color:var(--sage-light) !important; }
+  .lead-form-note { color:rgba(255,255,255,0.4) !important; }
+
+  .match-section { background:white; border-top:1px solid var(--border); }
+  .match-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:52px; }
+  .match-visual { border-radius:18px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.1); aspect-ratio:4/5; position:relative; }
+  .match-visual img { width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; }
+  .match-visual-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(20,20,20,0.65) 0%,transparent 55%); }
+  .match-visual-label { position:absolute; bottom:28px; left:28px; right:28px; color:white; }
+  .match-visual-label h3 { font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:6px; }
+  .match-visual-label p { font-size:0.88rem; color:rgba(255,255,255,0.65); line-height:1.5; }
+  .match-steps { display:flex; flex-direction:column; gap:22px; margin-bottom:36px; }
+  .match-step { display:flex; gap:16px; align-items:flex-start; }
+  .step-num { width:32px; height:32px; background:var(--sage); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.88rem; font-weight:500; flex-shrink:0; margin-top:2px; }
+  .step-text h4 { font-weight:500; font-size:1rem; margin-bottom:4px; }
+  .step-text p { font-size:0.92rem; color:var(--ink-soft); line-height:1.6; font-weight:300; }
+  .pricing-pill { background:var(--sage-pale); border:1px solid var(--sage-light); border-radius:14px; padding:36px; text-align:center; }
+  .free-badge { display:inline-block; background:rgba(122,158,126,0.15); border:1px solid var(--sage-light); border-radius:100px; padding:5px 16px; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); margin-bottom:14px; }
+  .price-tag { font-family:'Playfair Display',serif; font-size:3.4rem; color:var(--ink); line-height:1; margin-bottom:8px; }
+  .price-desc { font-size:0.95rem; color:var(--ink-soft); margin-bottom:8px; font-weight:300; }
+  .price-guarantee { font-size:0.95rem; color:var(--sage); font-weight:500; margin-bottom:24px; }
+
+  @media(max-width:800px){ .hero-content{padding:80px 24px 48px;} .match-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Clearapy</a>
+  <ul class="nav-links"><li><a href="#match">How It Works</a></li><li><a href="#about">About</a></li></ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Clearapy · Therapist Matching</p>
+    <h1>Tried therapy before and it just <em>didn't click?</em></h1>
+    <p class="hero-sub">We personally match you with 3 therapists — picked around how you actually talk about what you're going through. No insurance maze, no guesswork. Free for US residents.</p>
+    <div class="lead-form-wrap lead-form-wrap-hero">
+      <form action="https://formspree.io/f/mykaanel" method="POST" class="lead-form" onsubmit="trackClick('match_hero_v6')">
+        <input type="hidden" name="_subject" value="New Therapist Match Lead — V6" />
+        <input type="hidden" name="service" value="Therapist Match" />
+        <div class="lead-form-row"><input type="text" name="name" placeholder="Your name" required class="lead-input" /></div>
+        <div class="lead-form-row"><input type="email" name="email" placeholder="Your email" required class="lead-input" /></div>
+        <div class="lead-form-row"><input type="tel" name="phone" placeholder="Your phone number" required class="lead-input" /></div>
+        <button type="submit" class="lead-submit-btn" onclick="trackClick('match_hero_v6')">Get My 3 Matches — Free</button>
+      </form>
+      <p class="lead-form-note">For US residents. I'll text or email you within 2 business days.</p>
+    </div>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-icon">🔍</div><div class="trust-text"><h4>Personally researched</h4><p>Not an algorithm. A real person reads what you share and finds who fits.</p></div></div>
+    <div class="trust-item"><div class="trust-icon">📋</div><div class="trust-text"><h4>3 matches with a reason</h4><p>Each match comes with a note on why they could work for you specifically.</p></div></div>
+    <div class="trust-item"><div class="trust-icon">💚</div><div class="trust-text"><h4>Free for US residents</h4><p>No payment, no catch. Just drop your info and I'll do the work.</p></div></div>
+  </div>
+</div>
+
+<section class="match-section" id="match">
+  <div class="section-inner">
+    <span class="section-tag">Therapist Match — Free for US Residents</span>
+    <h2 class="section-title">Stop guessing. Get 3 therapists who actually fit you.</h2>
+    <p class="section-sub">Finding a therapist shouldn't feel like scrolling through a stranger's LinkedIn. I do the research and hand you 3 hand-picked matches — each with a note on why they could work for you specifically.</p>
+    <div class="match-grid">
+      <div class="match-visual">
+        <img src="therapy.jpg" alt="Therapy session" />
+        <div class="match-visual-overlay"></div>
+        <div class="match-visual-label">
+          <h3>The right therapist changes everything.</h3>
+          <p>Most people quit after 1–2 sessions because the fit was wrong — not because therapy doesn't work.</p>
+        </div>
+      </div>
+      <div>
+        <div class="match-steps">
+          <div class="match-step"><div class="step-num">1</div><div class="step-text"><h4>Drop your name, email, and number</h4><p>Takes 15 seconds. I'll text or email you to learn what you need: insurance, modality, personality, availability.</p></div></div>
+          <div class="match-step"><div class="step-num">2</div><div class="step-text"><h4>I research and vet 3 matches for you</h4><p>Within 5 business days you get 3 recommendations, each with a note on why they fit.</p></div></div>
+          <div class="match-step"><div class="step-num">3</div><div class="step-text"><h4>You reach out and book with confidence</h4><p>No more guessing. No more scrolling. Just 3 people worth calling.</p></div></div>
+        </div>
+        <div class="pricing-pill">
+          <div class="free-badge">100% Free</div>
+          <div class="price-tag">Free</div>
+          <div class="price-desc">For US residents · Delivered within 5 business days</div>
+          <div class="price-guarantee">✦ No cost. No catch. Just a real match.</div>
+          <div class="lead-form-wrap">
+            <form action="https://formspree.io/f/mykaanel" method="POST" class="lead-form" onsubmit="trackClick('match_section_v6')">
+              <input type="hidden" name="_subject" value="New Therapist Match Lead — V6" />
+              <input type="hidden" name="service" value="Therapist Match" />
+              <div class="lead-form-row"><input type="text" name="name" placeholder="Your name" required class="lead-input" /></div>
+              <div class="lead-form-row"><input type="email" name="email" placeholder="Your email" required class="lead-input" /></div>
+              <div class="lead-form-row"><input type="tel" name="phone" placeholder="Your phone number" required class="lead-input" /></div>
+              <button type="submit" class="lead-submit-btn">Get My 3 Matches — Free</button>
+            </form>
+            <p class="lead-form-note">I'll text or email you within 2 business days to get started.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-frame"><img src="photo.png" alt="Alina Abraham" /></div>
+      <div>
+        <span class="section-tag">About</span>
+        <div class="about-name">Alina Abraham</div>
+        <div class="about-title">UGA Student &nbsp;·&nbsp; Mental Health Advocate &nbsp;·&nbsp; Crisis Textline Volunteer</div>
+        <p class="about-body">I've spent the last year talking to therapists, clinics, and people who quit therapy. Not because therapy failed them, but because the system made it too hard to stick with. The wrong fit, the sessions that felt like starting over, the weeks between appointments with nothing to hold onto.<br><br>This service is my attempt to change that. Not with an app — just with real attention and the belief that the right fit is out there.<br><br>I'm a UGA student testing whether this idea is real. If it helps you, it helps me know whether to keep building.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p><strong>Disclaimer:</strong> Alina Abraham is not a licensed medical or mental health professional. This service is not a substitute for therapy, counseling, or clinical treatment. If you are in crisis or experiencing a mental health emergency, please call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) or contact your nearest emergency services immediately.</p>
+</div>
+<footer>
+  <div class="footer-logo">Clearapy</div>
+  <div class="footer-sub">Built by Alina Abraham · Athens, GA · <span style="color:var(--sage)">Kaduvamma@gmail.com</span></div>
+</footer>
+</body>
+</html>
