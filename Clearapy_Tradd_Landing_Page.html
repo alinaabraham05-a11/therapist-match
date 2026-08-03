@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearapy — Support for Tradd Advisory Drivers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1B1520;
+    --bg-panel: #251D2B;
+    --ember: #C4703A;
+    --gold: #C49A3C;
+    --text: #F2E9DF;
+    --text-muted: #B7A99B;
+    --hairline: rgba(196, 154, 60, 0.22);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% -10%, rgba(196,112,58,0.18), transparent 60%),
+      var(--bg);
+  }
+  .page {
+    width: 100%;
+    max-width: 480px;
+    padding: 48px 28px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .wordmark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 46px;
+  }
+
+  /* Signature element: a single glowing point, like a light down a dark highway */
+  .glow-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .glow {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(196,154,60,0.6);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(196,154,60,0.55), 0 0 10px 2px rgba(196,154,60,0.5); }
+    70%  { box-shadow: 0 0 0 14px rgba(196,154,60,0), 0 0 16px 4px rgba(196,154,60,0.35); }
+    100% { box-shadow: 0 0 0 0 rgba(196,154,60,0), 0 0 10px 2px rgba(196,154,60,0.5); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glow { animation: none; box-shadow: 0 0 10px 2px rgba(196,154,60,0.5); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 34px;
+    line-height: 1.22;
+    text-align: center;
+    margin: 0 0 18px;
+    color: var(--text);
+  }
+  .sub {
+    text-align: center;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 38px;
+    padding: 0 6px;
+  }
+  .sub strong { color: var(--text); font-weight: 700; }
+
+  .call-block {
+    background: var(--bg-panel);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 26px 22px;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .call-label {
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .call-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 18px;
+    letter-spacing: 0.01em;
+  }
+  .call-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    background: linear-gradient(135deg, var(--ember), #A85C2C);
+    color: #FFF6EC;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 9px;
+    letter-spacing: 0.01em;
+  }
+  .call-btn:active { opacity: 0.85; }
+
+  .hours {
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-bottom: 34px;
+    line-height: 1.6;
+  }
+  .hours .times { color: var(--text); font-weight: 500; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 30px;
+    opacity: 0.5;
+  }
+  .divider span {
+    flex: 1;
+    height: 0;
+    border-top: 1px dashed var(--hairline);
+  }
+
+  .tagline {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 34px;
+  }
+
+  .footer {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+  }
+  .footer p {
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0 0 10px;
+  }
+  .footer a { color: var(--gold); text-decoration: none; }
+  .crisis {
+    font-size: 11.5px;
+    line-height: 1.65;
+    color: #E3B9A0;
+    background: rgba(196,112,58,0.10);
+    border: 1px solid rgba(196,112,58,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .crisis strong { color: #F2E9DF; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="wordmark">CLEARAPY</div>
+
+    <div class="glow-wrap"><div class="glow"></div></div>
+
+    <h1>Long night on&nbsp;the&nbsp;road?</h1>
+    <p class="sub">Tradd Advisory has partnered with Clearapy to give you <strong>free, confidential</strong> support &mdash; no appointment, no judgment, no cost to you.</p>
+
+    <div class="call-block">
+      <div class="call-label">Someone's on the line</div>
+      <a class="call-number" href="tel:+18633342447">(863) 334-2447</a>
+      <a class="call-btn" href="tel:+18633342447">Call now</a>
+    </div>
+
+    <p class="hours">Available <span class="times">6:00 PM &ndash; 8:00 AM</span><br>Monday through Friday</p>
+
+    <div class="divider"><span></span></div>
+
+    <p class="tagline">Support, matched to who you are.</p>
+
+    <div class="footer">
+      <div class="crisis">
+        <strong>In crisis right now?</strong> Call or text 988 (Suicide &amp; Crisis Lifeline), or contact emergency services immediately.
+      </div>
+      <p>Clearapy provides confidential, judgment-free listening and guidance. This is not a substitute for licensed treatment and is not a medical service.</p>
+      <p>Questions? <a href="mailto:clearapycs@gmail.com">clearapycs@gmail.com</a></p>
+    </div>
+  </div>
+</body>
+</html>
