@@ -20,18 +20,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:
 .btn{display:inline-block;padding:16px 34px;background:linear-gradient(135deg,var(--ember),var(--gold));color:#1a120b;font-weight:600;font-size:1.05rem;border:0;border-radius:999px;cursor:pointer;text-decoration:none;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 30px rgba(196,112,58,.35)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(196,112,58,.5)}
 .btn.sm{padding:11px 24px;font-size:.95rem}
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 48px 80px;overflow:hidden;background:radial-gradient(ellipse at 75% 30%,rgba(196,112,58,.35),transparent 55%),radial-gradient(ellipse at 20% 90%,rgba(196,154,60,.18),transparent 50%),var(--bg)}
-.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,16,13,.92) 25%,rgba(20,16,13,.45) 100%)}
-.hero-in{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 48px 70px;overflow:hidden;background:radial-gradient(ellipse at 80% 20%,rgba(196,112,58,.30),transparent 55%),radial-gradient(ellipse at 10% 95%,rgba(196,154,60,.16),transparent 50%),var(--bg)}
+.hero-in{position:relative;z-index:2;max-width:1240px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"text photo";column-gap:56px;align-items:center}
+.hero-text{grid-area:text}
+.hero-in .card{grid-area:card}
+.photo{grid-area:photo;position:relative;align-self:center;aspect-ratio:4/5;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid var(--line)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:14% center}
+.photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,13,0) 60%,rgba(20,16,13,.35));pointer-events:none}
 .eyebrow{font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:500}
-h1{font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.1;margin-bottom:22px}
+h1{text-wrap:balance;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.1;margin-bottom:22px}
 h1 em{color:var(--ember);font-style:italic}
 .lead{font-size:1.2rem;color:var(--muted);max-width:520px;margin-bottom:30px}
-.card{background:rgba(28,22,18,.82);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.card{background:rgba(28,22,18,.82);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
 .card h2{font-size:1.7rem;margin-bottom:6px}
 .card p.s{color:var(--muted);font-size:.98rem;margin-bottom:20px}
-input[type=text],input[type=email]{width:100%;padding:16px 18px;margin-bottom:12px;background:rgba(246,239,230,.07);border:1.5px solid var(--line);border-radius:14px;color:var(--cream);font:inherit;font-size:1.05rem}
+.consent{font-size:.8rem;color:rgba(246,239,230,.45);margin:-4px 0 12px;line-height:1.4}
+input[type=text],input[type=email],input[type=tel]{width:100%;padding:16px 18px;margin-bottom:12px;background:rgba(246,239,230,.07);border:1.5px solid var(--line);border-radius:14px;color:var(--cream);font:inherit;font-size:1.05rem}
 input::placeholder{color:rgba(246,239,230,.4)}
 input:focus{outline:none;border-color:var(--ember)}
 .card .btn{width:100%;margin-top:6px}
@@ -59,47 +63,97 @@ h2.big{font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;margin-bottom:14px}
 .final .card{max-width:520px;margin:36px auto 0;text-align:left}
 .disc{padding:36px 48px;text-align:center;border-top:1px solid var(--line);font-size:.88rem;color:rgba(246,239,230,.5)}
 .disc p{max-width:780px;margin:0 auto}
-@media(max-width:860px){nav{padding:14px 20px}.hero{padding:100px 20px 60px}.hero-in{grid-template-columns:1fr;gap:36px}section{padding:70px 20px}.grid{grid-template-columns:1fr}.card{padding:28px 22px}}
+.doors{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+.btn.big{padding:20px 34px;font-size:1.12rem}
+.btn.ghost{background:transparent;color:var(--cream);border:2px solid var(--ember);box-shadow:none}
+.btn.ghost:hover{background:rgba(196,112,58,.18)}
+.navlinks{display:flex;align-items:center;gap:28px}
+.navlinks a.t{color:var(--muted);text-decoration:none;font-size:1rem}
+.navlinks a.t:hover{color:var(--cream)}
+.tag{display:inline-block;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,154,60,.5);padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;text-align:left}
+.step .n{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ember),var(--gold));color:#1a120b;font-weight:600;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.1rem}
+.step h3{font-size:1.35rem;margin-bottom:8px}
+.step p{color:var(--muted)}
+.safety{max-width:760px;margin:44px auto 0;text-align:left;background:rgba(196,112,58,.10);border:1px solid rgba(196,112,58,.45);border-radius:18px;padding:22px 26px;font-size:.98rem;color:var(--muted)}
+.safety strong{color:var(--cream)}
+.draft{max-width:760px;margin:28px auto 0;border:2px dashed rgba(246,239,230,.35);border-radius:14px;padding:14px 18px;font-size:.92rem;color:var(--gold);text-align:left}
+.talk{background:linear-gradient(180deg,var(--bg),#1a1410);border-top:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split-text{text-align:left}
+.split-text .sub{margin:0}
+.frame{border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid var(--line)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.steps.col{grid-template-columns:1fr;gap:20px;margin-top:30px}
+.steps.col .step{display:grid;grid-template-columns:44px 1fr;column-gap:16px;align-items:start}
+.steps.col .step .n{grid-row:1/3;margin:0}
+.steps.col .step h3{margin:0 0 2px;font-size:1.25rem}
+.pl{display:flex;align-items:baseline;gap:14px;margin:30px 0 14px;flex-wrap:wrap}
+.pl .price{font-size:2.8rem;margin:0}
+.pl span.t{color:var(--muted)}
+.fine{font-size:.82rem;color:rgba(246,239,230,.5);margin-top:14px;line-height:1.5}
+.split-text .safety{margin:26px 0 0;max-width:none}
+#business .grid{text-align:center;margin-top:64px}
+@media(max-width:860px){nav{padding:14px 20px}.hero{padding:100px 20px 50px}.hero-in{grid-template-columns:1fr;grid-template-areas:"text" "photo";row-gap:32px}.photo{aspect-ratio:4/3}.steps{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:32px}.frame{aspect-ratio:4/3}.split .frame{order:2}.split-text{order:1}.navlinks a.t{display:none}section{padding:70px 20px}.grid{grid-template-columns:1fr}.card{padding:28px 22px}}
 </style>
 </head>
 <body>
 <nav>
   <a class="logo" href="#">Clear<span>apy</span></a>
-  <a class="btn sm" href="#contact">Get in touch</a>
+  <div class="navlinks"><a class="t" href="#talk">Need to talk?</a><a class="btn sm" href="#business">For businesses</a></div>
 </nav>
 
 <header class="hero">
-  <!-- HERO MEDIA: add hero.mp4 (and hero.jpg as the poster) to the same folder, then remove the comment markers below. -->
-  <!--
-  <video autoplay muted loop playsinline poster="hero.jpg"><source src="hero.mp4" type="video/mp4"></video>
-  -->
   <div class="hero-in">
-    <div>
-      <p class="eyebrow">For trucking company owners</p>
-      <h1>Your drivers carry a lot. Give them someone to <em>talk to.</em></h1>
-      <p class="lead">A caring, confidential listening line for the people on the road, so small struggles don't become big losses for your team.</p>
+    <div class="hero-text">
+      <p class="eyebrow">A listening line for people who work long hours</p>
+      <h1>Long hours. Heavy days. Someone to <em>talk to.</em></h1>
+      <p class="lead">Clearapy is a caring, confidential listening line, made first for truck drivers and open to everyone.</p>
+      <div class="doors">
+        <a class="btn big" href="#talk">I need someone to talk to</a>
+        <a class="btn big ghost" href="#business">I own a business</a>
+      </div>
     </div>
-    <div class="card" id="contact">
-      <h2>Let's talk</h2>
-      <p class="s">Tell us who you are. We'll reach out personally.</p>
-      <form class="leadform">
-        <input type="text" name="name" placeholder="Your name" required autocomplete="name" maxlength="100">
-        <input type="text" name="company" placeholder="Company" required autocomplete="organization" maxlength="120">
-        <input type="email" name="email" placeholder="Email" required autocomplete="email" maxlength="160">
-        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn" type="submit">Get started</button>
-        <div class="msg" role="status"></div>
-      </form>
-    </div>
+    <div class="photo"><img src="hero.jpg" alt="A trucking company owner walking through a truck yard at sunrise" fetchpriority="high"></div>
   </div>
 </header>
 
-<section>
-  <div class="in center">
-    <h2 class="big">Simple. Human. Ready when they are.</h2>
-    <p class="sub">Three ways we support your people.</p>
+<section class="talk" id="talk">
+  <div class="in">
+    <div class="split">
+      <div class="frame"><img src="talk.jpg" alt="A man alone on a phone call, looking worried" style="object-position:50% 38%"></div>
+      <div class="split-text">
+        <span class="tag">For you</span>
+        <h2 class="big">Need someone to talk to?</h2>
+        <p class="sub">You don't have to explain everything. Just call, and a real person will listen.</p>
+        <div class="steps col">
+          <div class="step"><div class="n">1</div><h3>Tap the button</h3><p>Pay securely. No account needed.</p></div>
+          <div class="step"><div class="n">2</div><h3>Get the number</h3><p>It appears right after you pay.</p></div>
+          <div class="step"><div class="n">3</div><h3>Talk it out</h3><p>A caring person listens, with no judgment.</p></div>
+        </div>
+        <div class="pl"><span class="price">$30</span><span class="t">per call</span></div>
+        <button class="btn big paybtn" type="button">Talk to someone now</button>
+        <div class="msg paymsg" role="status"></div>
+        <p class="fine">By continuing you agree to our conduct terms: calls stay respectful. Sexual conversation, solicitation or requests for personal information about our listeners end the call with no refund.</p>
+        <div class="safety"><strong>This is not a crisis line.</strong> If you are in immediate danger, call or text <strong>988</strong>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="business">
+  <div class="in">
+    <div class="split">
+      <div class="split-text">
+        <span class="tag">For business owners</span>
+        <h2 class="big">Support the people who keep you moving.</h2>
+        <p class="sub">Give your drivers and team a caring place to turn, and get workshops and resources made for your company.</p>
+        <div style="margin-top:28px"><a class="btn big" href="#contact-form">Get in touch</a></div>
+      </div>
+      <div class="frame"><img src="team.jpg" alt="Two colleagues having a conversation at work" style="object-position:50% 66%"></div>
+    </div>
     <div class="grid">
-      <div class="tile"><div class="price">$40</div><h3>Per call</h3><p>A real person to listen, any time a driver needs it. Pay only for the calls used.</p></div>
+      <div class="tile"><div class="price">$30</div><h3>Per call</h3><p>A real person to listen, any time a driver needs it. Pay only for the calls used.</p></div>
       <div class="tile"><div class="price">&#9679;</div><h3>Workshops &amp; talks</h3><p>Live sessions on stress, sleep and staying well, for drivers and dispatch alike.</p></div>
       <div class="tile"><div class="price">&#9679;</div><h3>Exclusive resources</h3><p>Mental health guides made for your company's needs, not copied from a template.</p></div>
     </div>
@@ -112,7 +166,7 @@ h2.big{font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;margin-bottom:14px}
   </div>
 </section>
 
-<section class="final">
+<section class="final" id="contact-form">
   <div class="in">
     <h2 class="big">Ready to support your team?</h2>
     <p class="sub" style="margin:0 auto">Leave your details and we'll be in touch.</p>
@@ -121,6 +175,8 @@ h2.big{font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;margin-bottom:14px}
         <input type="text" name="name" placeholder="Your name" required autocomplete="name" maxlength="100">
         <input type="text" name="company" placeholder="Company" required autocomplete="organization" maxlength="120">
         <input type="email" name="email" placeholder="Email" required autocomplete="email" maxlength="160">
+        <input type="tel" name="phone" placeholder="Mobile number (optional)" autocomplete="tel" maxlength="20">
+        <p class="consent">By adding your number, you agree to receive text messages from Clearapy. Message and data rates may apply. Reply STOP to opt out.</p>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn" type="submit">Get started</button>
         <div class="msg" role="status"></div>
@@ -135,7 +191,7 @@ h2.big{font-size:clamp(2rem,3.6vw,3rem);line-height:1.15;margin-bottom:14px}
 </div>
 
 <script>
-var ENDPOINT='https://clearapy-callgate-production.up.railway.app/lead';
+var BASE='https://clearapy-callgate-production.up.railway.app';var ENDPOINT=BASE+'/lead';
 document.querySelectorAll('.leadform').forEach(function(f){
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -151,6 +207,17 @@ document.querySelectorAll('.leadform').forEach(function(f){
       })
       .catch(function(){m.className='msg err';m.textContent='Could not send. Please try again.';})
       .finally(function(){b.disabled=false;});
+  });
+});
+
+document.querySelectorAll('.paybtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var label=b.textContent,m=document.querySelector('.paymsg');
+    b.disabled=true;b.textContent='Opening secure checkout...';m.className='msg paymsg';m.textContent='';
+    fetch(BASE+'/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({demographic:'general'})})
+      .then(function(r){return r.json();})
+      .then(function(j){if(j&&j.url){if(window.gtag)gtag('event','checkout_start');window.location.href=j.url;}else{throw new Error('no url');}})
+      .catch(function(){b.disabled=false;b.textContent=label;m.className='msg paymsg err';m.textContent='Could not open checkout. Please try again.';});
   });
 });
 </script>
